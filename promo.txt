@@ -1,0 +1,1050 @@
+ECOTRACK
+
+WASTE MANAGEMENT AND COLLECTION TRACKING SYSTEM
+
+COMPLETE SOFTWARE DEVELOPMENT INSTRUCTIONS
+
+==================================================
+PROMPT 01: MASTER DEVELOPMENT INSTRUCTION
+
+Act as a Senior Full-Stack Software Engineer, MongoDB Database Architect, Application Security Engineer, UI/UX Designer and Software Quality Assurance Engineer.
+
+Your responsibility is to develop a complete, professional, functional and secure web application named:
+
+ECOTRACK — WASTE MANAGEMENT AND COLLECTION TRACKING SYSTEM.
+
+PROJECT OBJECTIVE:
+
+Develop a web-based application that allows residents to report waste problems, administrators to manage reports and assign collection tasks, and waste collectors to manage assigned collection activities.
+
+TECHNOLOGY STACK:
+
+Frontend:
+
+- HTML5
+- CSS3
+- Vanilla JavaScript
+
+Backend:
+
+- Node.js
+- Express.js
+
+Database:
+
+- MongoDB Atlas
+- Mongoose
+
+Security:
+
+- bcrypt password hashing
+- Secure authentication
+- Role-Based Access Control (RBAC)
+- Input validation
+- Secure session/token management
+
+USER ROLES:
+
+1. RESIDENT
+
+- Register an account.
+- Log in and log out.
+- Submit waste reports.
+- View personal reports.
+- Track report status.
+- Edit or delete eligible personal reports.
+
+2. ADMINISTRATOR
+
+- Access a protected administrator dashboard.
+- View and manage users.
+- View and manage waste reports.
+- Create collector accounts.
+- Assign collection tasks.
+- Manage collection records.
+- View system statistics.
+
+3. WASTE COLLECTOR
+
+- Log in using an administrator-created account.
+- View assigned tasks.
+- View collection locations.
+- Update collection progress.
+- Mark collection tasks as completed.
+- View collection history.
+
+STRICT DEVELOPMENT RULES:
+
+- MongoDB must be the primary persistent database.
+- Never replace MongoDB with localStorage or hardcoded arrays.
+- Implement real backend APIs.
+- Implement complete CRUD functionality.
+- Separate models, routes, controllers and middleware.
+- Use environment variables for secrets.
+- Never expose database credentials.
+- Never store plaintext passwords.
+- Never allow public administrator registration.
+- Never trust frontend authorization alone.
+- Never create buttons that do nothing.
+- Never create fake statistics or testimonials.
+- Avoid unnecessary dependencies.
+- Use clean and maintainable code.
+- Do not overwrite useful existing files without permission.
+
+SECURITY REQUIREMENTS:
+
+Protect against:
+
+- Unauthorized access.
+- Privilege escalation.
+- NoSQL injection.
+- Cross-site scripting.
+- CSRF where applicable.
+- Brute-force login attempts.
+- Malicious file uploads.
+- Insecure direct object references.
+- Mass assignment vulnerabilities.
+- Sensitive information exposure.
+
+Implement:
+
+- Server-side RBAC.
+- Password hashing.
+- Authentication middleware.
+- Authorization middleware.
+- Rate limiting.
+- Helmet security headers.
+- Input validation and sanitization.
+- Secure cookies or appropriately protected tokens.
+- Proper CORS configuration.
+- Safe error handling.
+- Audit logs for important administrative actions.
+
+DEVELOPMENT APPROACH:
+
+Work in stages.
+
+Before development:
+
+1. Inspect the existing workspace.
+2. Identify existing files.
+3. Preserve useful code.
+4. Plan the architecture.
+5. Identify missing requirements.
+
+After each stage:
+
+1. Run relevant tests.
+2. Identify errors.
+3. Fix problems.
+4. Explain completed work.
+5. Report remaining limitations.
+6. Never claim untested functionality works.
+
+Do not deploy or expose the application publicly without explicit approval.
+
+The final application must be professional, secure, responsive, accessible, maintainable and suitable for an academic software engineering final project.
+
+==================================================
+PROMPT 02: PROJECT INITIALIZATION
+
+Act as a Senior Node.js Software Architect.
+
+Initialize the EcoTrack project in my current VS Code workspace.
+
+First inspect existing files and preserve useful work.
+
+Create this project structure:
+
+backend/
+config/
+models/
+controllers/
+routes/
+middleware/
+validators/
+services/
+utils/
+tests/
+
+frontend/
+css/
+js/
+images/
+index.html
+login.html
+register.html
+resident.html
+admin.html
+collector.html
+about.html
+privacy-policy.html
+terms.html
+cookies-policy.html
+
+Also create:
+
+- package.json
+- .env.example
+- .gitignore
+- README.md
+
+Configure Node.js, Express.js and Mongoose.
+
+Install only necessary dependencies.
+
+Configure MongoDB Atlas connection through environment variables.
+
+Create a health-check endpoint.
+
+Ensure .env and node_modules are excluded from Git.
+
+Explain the purpose of each folder and file.
+
+Run initial project checks and report the results.
+
+Do not proceed to database implementation until project initialization is verified.
+
+==================================================
+PROMPT 03: MONGODB DATABASE ARCHITECTURE
+
+Act as an experienced MongoDB Database Architect.
+
+Design and implement the MongoDB database for EcoTrack.
+
+Use MongoDB Atlas and Mongoose.
+
+Create three main collections:
+
+1. users
+2. wasteReports
+3. collections
+
+USER MODEL:
+
+- Full name
+- Email
+- Phone number
+- Location
+- Hashed password
+- Role: resident, admin or collector
+- Account status
+- Created date
+
+WASTE REPORT MODEL:
+
+- Resident reference
+- Waste category
+- Location
+- Description
+- Optional image reference
+- Status: Pending, Approved, Assigned, In Progress, Completed or Rejected
+- Created date
+- Updated date
+
+COLLECTION MODEL:
+
+- Waste report reference
+- Assigned collector reference
+- Administrator reference
+- Scheduled collection date
+- Collection status
+- Completion date
+- Notes
+
+REQUIREMENTS:
+
+- Use ObjectId references.
+- Add validation.
+- Add timestamps.
+- Create useful indexes.
+- Prevent duplicate email registrations.
+- Validate all status values.
+- Protect sensitive fields.
+- Avoid unnecessary data duplication.
+- Implement safe database queries.
+- Handle database errors.
+
+Create development seed data separately from production.
+
+Do not invent real users or business information.
+
+Explain the database design before implementation.
+
+==================================================
+PROMPT 04: SECURITY AND AUTHENTICATION
+
+Act as a Senior Application Security Engineer.
+
+Implement secure authentication and Role-Based Access Control for EcoTrack.
+
+This is a HIGH PRIORITY requirement.
+
+A. RESIDENT REGISTRATION
+
+Allow registration using:
+
+- Full name
+- Email
+- Phone number
+- Location
+- Password
+- Confirm password
+
+Validate information on the backend.
+
+Hash passwords using bcrypt.
+
+Prevent duplicate email registrations.
+
+Public registration must always assign the resident role.
+
+Never accept administrator or collector roles from public registration requests.
+
+B. LOGIN AND LOGOUT
+
+Implement secure login and logout.
+
+Use secure HttpOnly cookies with appropriate Secure and SameSite settings in production, or another carefully designed authentication strategy.
+
+Do not store authentication tokens in localStorage.
+
+Implement login rate limiting.
+
+Use safe authentication error messages.
+
+C. ROLE-BASED ACCESS CONTROL
+
+RESIDENT:
+
+- Access personal reports only.
+- Submit waste reports.
+- Edit or delete eligible personal reports.
+- Never access administrator routes.
+- Never access other residents' private information.
+
+ADMINISTRATOR:
+
+- Manage users.
+- Manage waste reports.
+- Create collector accounts.
+- Assign collection tasks.
+- Manage collection records.
+- Access authorized statistics.
+
+COLLECTOR:
+
+- View assigned tasks only.
+- Update assigned task status.
+- View own collection history.
+- Never create administrator accounts.
+- Never access other collectors' tasks.
+
+D. ADDITIONAL SECURITY
+
+Implement:
+
+- Server-side authentication.
+- Server-side authorization.
+- Object ownership checks.
+- NoSQL injection protection.
+- XSS protection.
+- CSRF protection where applicable.
+- Input validation and sanitization.
+- Helmet.
+- Rate limiting.
+- Appropriate CORS.
+- Secure error handling.
+- Secure password management.
+- Audit logs.
+
+Never expose passwords, password hashes, database URIs or authentication secrets in API responses.
+
+E. SECURITY TESTING
+
+Test:
+
+- Resident accessing administrator routes.
+- Resident accessing another resident's reports.
+- Collector accessing another collector's tasks.
+- Unauthenticated access to protected APIs.
+- Attempted administrator privilege escalation.
+- Invalid input.
+- Repeated failed login attempts.
+
+Fix identified vulnerabilities and provide a security testing report.
+
+==================================================
+PROMPT 05: PROFESSIONAL HOMEPAGE
+
+Act as a Senior UI/UX Designer and Frontend Developer.
+
+Develop a professional, modern and responsive homepage for:
+
+ECOTRACK — WASTE MANAGEMENT AND COLLECTION TRACKING SYSTEM.
+
+DESIGN:
+
+- Modern environmental design.
+- Green and white color scheme.
+- Clean typography.
+- Professional navigation.
+- Attractive environmental visuals.
+- Responsive layout.
+- Accessible components.
+- Consistent spacing.
+
+HOMEPAGE SECTIONS:
+
+1. NAVIGATION BAR
+
+Include:
+
+- EcoTrack logo.
+- Home.
+- About.
+- Services.
+- How It Works.
+- Contact.
+- Login.
+- Register.
+
+2. HERO SECTION
+
+Headline:
+
+"Building a Cleaner Environment Through Smarter Waste Management."
+
+Supporting statement:
+
+"Our platform makes it easier for residents to report waste problems, request collection services and monitor waste collection activities."
+
+Buttons:
+
+- Report Waste.
+- Learn More.
+
+3. ABOUT SECTION
+
+Explain the purpose of EcoTrack and the problem it addresses.
+
+4. SERVICES SECTION
+
+Display:
+
+- Waste Reporting.
+- Collection Requests.
+- Collection Tracking.
+
+5. HOW IT WORKS
+
+Display four steps:
+
+- Create Account.
+- Report Waste.
+- Waste Collection.
+- Track Progress.
+
+6. CONTACT SECTION
+
+Display verified contact details only.
+
+Use clearly identified placeholders until real information is provided.
+
+7. FOOTER
+
+Include:
+
+- About.
+- Contact.
+- Privacy Policy.
+- Terms and Conditions.
+- Cookies Policy.
+
+INTERACTIONS:
+
+- Register opens registration.
+- Login opens login.
+- Report Waste redirects unauthenticated users to login.
+- Authenticated residents can access their dashboard.
+- All navigation links must work.
+- All buttons must perform real actions.
+
+Use original or appropriately licensed images.
+
+Provide meaningful alt text for images.
+
+Do not invent testimonials, reviews, certifications, partnerships or achievements.
+
+==================================================
+PROMPT 06: RESIDENT DASHBOARD
+
+Develop the complete Resident Dashboard.
+
+Connect it to the actual Express backend and MongoDB database.
+
+Implement:
+
+1. Resident profile.
+2. Submit Waste Report.
+3. My Waste Reports.
+4. Report Tracking.
+5. Edit Eligible Reports.
+6. Delete Eligible Reports.
+7. Logout.
+
+WASTE REPORT FORM:
+
+- Waste category: Plastic, Organic, Paper, Metal and General Waste.
+- Location.
+- Description.
+- Optional image upload.
+
+After submission:
+
+- Validate the information.
+- Send it to the backend.
+- Save it in MongoDB.
+- Display a success message.
+- Refresh the reports list.
+
+Residents should see:
+
+- Pending reports.
+- Approved reports.
+- Assigned reports.
+- In-progress reports.
+- Completed reports.
+- Rejected reports.
+
+Residents must only access their own reports.
+
+Implement proper loading states, empty states and error messages.
+
+Do not use hardcoded reports.
+
+Every record must come from an authenticated backend request.
+
+Test all resident operations.
+
+==================================================
+PROMPT 07: ADMINISTRATOR DASHBOARD
+
+Build the EcoTrack Administrator Dashboard.
+
+Protect it using server-side administrator authorization.
+
+Create these sections:
+
+1. Dashboard Overview.
+2. User Management.
+3. Waste Report Management.
+4. Collector Management.
+5. Collection Task Assignment.
+6. Collection Management.
+7. Reports and Analytics.
+8. Logout.
+
+DASHBOARD OVERVIEW:
+
+Display real MongoDB statistics:
+
+- Total residents.
+- Total collectors.
+- Total waste reports.
+- Pending reports.
+- Assigned collections.
+- Completed collections.
+
+USER MANAGEMENT:
+
+- View users.
+- Search users.
+- Filter users by role.
+- Activate or deactivate accounts.
+- Manage collector accounts.
+
+WASTE REPORT MANAGEMENT:
+
+- View reports.
+- Search and filter reports.
+- Review report details.
+- Approve or reject reports.
+- Assign approved reports to collectors.
+- Update eligible records.
+- Delete authorized records.
+
+COLLECTION MANAGEMENT:
+
+- Assign collectors.
+- Schedule collection activities.
+- Monitor progress.
+- View completed tasks.
+
+SECURITY:
+
+Every operation must be authorized by backend middleware.
+
+Never expose password hashes.
+
+Record important administrative actions in audit logs.
+
+All dashboard information must come from MongoDB.
+
+Do not create fake statistics.
+
+Implement and test CRUD operations.
+
+==================================================
+PROMPT 08: WASTE COLLECTOR DASHBOARD
+
+Build the Waste Collector Dashboard.
+
+Only authenticated collector accounts may access it.
+
+Collector accounts must be created by authorized administrators.
+
+Implement:
+
+1. Collector Profile.
+2. Assigned Collection Tasks.
+3. Collection Locations.
+4. Waste Categories.
+5. Collection Description.
+6. Scheduled Collection Date.
+7. Task Status.
+8. Collection History.
+9. Logout.
+
+Allow collectors to update assigned task statuses through protected backend endpoints.
+
+WORKFLOW:
+
+Assigned → In Progress → Completed.
+
+If a task cannot be completed, allow the collector to record a reason and notify the administrator through an appropriate task status or note.
+
+A collector must only access tasks assigned to their account.
+
+Prevent collectors from assigning tasks or accessing administrator functionality.
+
+Connect all information to MongoDB.
+
+Test collector authorization and status updates.
+
+==================================================
+PROMPT 09: CRUD AND FULL INTEGRATION
+
+Act as a Senior Backend Integration Engineer.
+
+Audit the entire EcoTrack application.
+
+Verify frontend, Express backend and MongoDB Atlas communication.
+
+Implement and verify all CRUD operations.
+
+CREATE:
+
+- Resident accounts.
+- Waste reports.
+- Collector accounts.
+- Collection assignments.
+
+READ:
+
+- Waste reports.
+- Authorized user records.
+- Collection records.
+- Dashboard statistics.
+
+UPDATE:
+
+- Eligible waste reports.
+- User information.
+- Collection assignments.
+- Collection status.
+
+DELETE:
+
+- Eligible reports.
+- Authorized records.
+- Related records safely where appropriate.
+
+Use proper REST API endpoints.
+
+Use correct HTTP status codes.
+
+Validate every incoming request.
+
+Handle missing records and database errors.
+
+Prevent unauthorized modifications.
+
+Inspect every frontend button and form.
+
+No decorative buttons pretending to perform real operations.
+
+Remove hardcoded demonstration data from production functionality.
+
+Test all operations from the browser through the backend to MongoDB.
+
+==================================================
+PROMPT 10: WEBSITE COMPLIANCE AND ACCESSIBILITY
+
+Act as a Website Compliance Specialist, Privacy Engineer and Accessibility Auditor.
+
+Conduct a complete compliance audit of EcoTrack.
+
+A. VISUAL ACCESSIBILITY
+
+- Check colour contrast.
+- Meet WCAG 2.2 AA contrast requirements where applicable.
+- Provide descriptive alt text for meaningful images.
+- Use empty alt attributes for decorative images.
+- Fix accessibility problems.
+- Make forms keyboard friendly.
+- Provide visible focus indicators.
+- Use semantic HTML.
+- Associate labels with form controls.
+- Provide clear validation errors.
+- Use clear button labels.
+- Support screen readers.
+- Ensure mobile responsiveness.
+
+B. PRIVACY POLICY
+
+Create a Privacy Policy explaining:
+
+- Information collected.
+- Why information is collected.
+- How information is stored.
+- MongoDB Atlas usage.
+- Who can access information.
+- Data retention.
+- Data security.
+- User privacy rights.
+- Contact procedures for privacy requests.
+
+Collect only necessary information.
+
+C. COOKIES POLICY AND CONSENT
+
+- Create a Cookies Policy.
+- Identify cookies used.
+- Distinguish essential and optional cookies.
+- Do not implement non-essential tracking by default.
+- Provide cookie consent where optional tracking is introduced.
+- Respect consent preferences.
+- Allow users to change preferences.
+
+D. TERMS AND CONDITIONS
+
+Explain:
+
+- Acceptable use.
+- Account responsibilities.
+- Reporting rules.
+- User responsibilities.
+- Service limitations.
+- Account suspension.
+- Complaints and contact procedures.
+
+E. REFUND POLICY
+
+Determine whether payments are processed.
+
+If the application does not process payments, clearly state that refunds are not applicable because no payment service is provided.
+
+Do not invent refund services.
+
+F. REVIEWS AND CLAIMS
+
+- Remove fake reviews.
+- Remove fake testimonials.
+- Remove unsupported claims.
+- Do not invent partnerships.
+- Do not invent certifications.
+- Do not fabricate statistics.
+
+G. THIRD-PARTY EMBEDS AND COPYRIGHT
+
+- Inspect third-party scripts.
+- Remove unnecessary services.
+- Document necessary third-party services.
+- Check image copyright and licensing.
+- Use original or appropriately licensed images.
+- Avoid unnecessary tracking.
+
+H. FORMS AND CONSENT
+
+- Explain why personal information is collected.
+- Add appropriate privacy notices.
+- Implement consent where legally required.
+- Do not preselect optional consent checkboxes.
+- Do not combine unrelated consent purposes.
+- Collect only necessary information.
+
+I. REAL BUSINESS DETAILS
+
+Never fabricate:
+
+- Business registration.
+- Physical address.
+- Phone numbers.
+- Email addresses.
+- Legal representatives.
+
+Use clearly marked placeholders until verified details are supplied.
+
+J. UGANDAN LEGAL COMPLIANCE
+
+Research relevant current Ugandan legal requirements using official sources.
+
+Pay attention to:
+
+- Data Protection and Privacy Act, 2019.
+- Data Protection and Privacy Regulations, 2021.
+- Applicable electronic transactions requirements.
+- Applicable consumer protection requirements.
+
+Identify obligations concerning:
+
+- Personal data.
+- Security.
+- Consent.
+- Data retention.
+- Data subject rights.
+- Third-party processing.
+
+Do not claim legal certification or guaranteed compliance.
+
+Flag issues requiring review by a qualified Ugandan legal or privacy professional.
+
+K. FINAL COMPLIANCE REPORT
+
+For every checklist item, use:
+
+PASS
+FAIL
+NEEDS REVIEW
+NOT APPLICABLE
+
+Explain what was checked and what was corrected.
+
+Never mark an item PASS without evidence.
+
+==================================================
+PROMPT 11: COMPLETE TESTING AND SECURITY AUDIT
+
+Act as a Senior Software Quality Assurance Engineer and Security Testing Specialist.
+
+Conduct comprehensive testing of EcoTrack.
+
+FUNCTIONAL TESTING:
+
+Test:
+
+- Registration.
+- Login.
+- Logout.
+- Waste report submission.
+- Viewing reports.
+- Editing reports.
+- Deleting reports.
+- Administrator login.
+- User management.
+- Collector creation.
+- Task assignment.
+- Collector login.
+- Collection status updates.
+- Dashboard statistics.
+
+AUTHORIZATION TESTING:
+
+Attempt:
+
+- Resident access to administrator routes.
+- Resident access to another resident's report.
+- Collector access to another collector's tasks.
+- Unauthenticated access to protected APIs.
+- Public administrator registration.
+- Unauthorized record deletion.
+
+Unauthorized operations must be rejected.
+
+SECURITY TESTING:
+
+Check:
+
+- Password hashing.
+- NoSQL injection.
+- XSS.
+- CSRF where applicable.
+- CORS.
+- Rate limiting.
+- File upload validation.
+- Environment variable exposure.
+- Sensitive API responses.
+- Authentication expiration.
+- Session security.
+- Input validation.
+
+DATABASE TESTING:
+
+Verify:
+
+- MongoDB Atlas connectivity.
+- Data persistence.
+- Schema validation.
+- Duplicate email prevention.
+- ObjectId references.
+- Indexes.
+- Error handling.
+
+USER INTERFACE TESTING:
+
+Check:
+
+- Mobile responsiveness.
+- Navigation.
+- Forms.
+- Buttons.
+- Empty states.
+- Loading states.
+- Accessibility.
+- Error messages.
+
+Fix critical and high-severity issues.
+
+Never hide failing tests.
+
+Produce a testing report containing:
+
+- Test case.
+- Expected result.
+- Actual result.
+- Pass or fail.
+- Problems discovered.
+- Fixes applied.
+- Remaining limitations.
+
+==================================================
+PROMPT 12: FINAL ACADEMIC DOCUMENTATION
+
+Act as a Senior Software Documentation Engineer and Academic Project Supervisor.
+
+Prepare complete academic and technical documentation for EcoTrack.
+
+Include:
+
+1. Project Title.
+2. Abstract.
+3. Background of the Study.
+4. Problem Statement.
+5. General Objective.
+6. Specific Objectives.
+7. Project Scope.
+8. Significance of the Project.
+9. Functional Requirements.
+10. Non-Functional Requirements.
+11. System Architecture.
+12. Use Case Descriptions.
+13. System Workflow.
+14. Database Design.
+15. MongoDB Collection Descriptions.
+16. API Documentation.
+17. Authentication and RBAC Explanation.
+18. CRUD Implementation.
+19. Frontend Interface Descriptions.
+20. Testing Methodology and Results.
+21. Security Measures.
+22. Website Compliance Assessment.
+23. Limitations.
+24. Future Improvements.
+25. Conclusion.
+
+Also prepare:
+
+- Installation Guide.
+- MongoDB Atlas Configuration Guide.
+- Environment Setup Guide.
+- Local Development Instructions.
+- API Endpoint Reference.
+- Resident User Guide.
+- Administrator User Guide.
+- Collector User Guide.
+
+Prepare presentation notes explaining:
+
+- The problem solved.
+- Why MongoDB was selected.
+- Frontend-backend communication.
+- CRUD operations.
+- Authentication.
+- Role-Based Access Control.
+- Data storage and retrieval.
+- Security measures.
+
+Only document functionality that is actually implemented and tested.
+
+Identify incomplete functionality and limitations honestly.
+
+==================================================
+PROMPT 13: FINAL PROJECT REVIEW
+
+Act as an independent Senior Software Engineering Reviewer.
+
+Inspect the entire EcoTrack repository.
+
+Compare the actual implementation against the original master development instructions.
+
+Determine whether the project is ready for academic demonstration.
+
+CHECK:
+
+1. Does the application start?
+2. Does MongoDB Atlas connect?
+3. Does registration work?
+4. Does login work?
+5. Is password hashing implemented?
+6. Is server-side RBAC enforced?
+7. Can residents submit and track reports?
+8. Can administrators manage reports?
+9. Can administrators assign collectors?
+10. Can collectors update assigned tasks?
+11. Do CRUD operations work?
+12. Are all buttons functional?
+13. Are privacy and legal pages present?
+14. Are accessibility requirements addressed?
+15. Are there fake records or unsupported claims?
+16. Are secrets protected?
+17. Are automated tests passing?
+18. Is the README accurate?
+19. Can the application be demonstrated locally?
+
+CLASSIFY FINDINGS:
+
+- Critical.
+- High.
+- Medium.
+- Low.
+
+Fix problems only when safe and authorized.
+
+Never delete project data or overwrite important configuration without permission.
+
+Do not claim the project is complete if critical functionality remains broken.
+
+Provide:
+
+1. Final project readiness report.
+2. Remaining problems.
+3. Exact installation instructions.
+4. Exact commands to run the application.
+5. Instructions for testing each user role.
+6. Instructions for demonstrating CRUD.
+7. Final academic demonstration checklist.
+
+The final application must be secure, professional, functional and maintainable.
+
+END OF ECOTRACK DEVELOPMENT INSTRUCTIONS.

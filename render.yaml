@@ -1,0 +1,30 @@
+services:
+  - type: web
+    name: ecotrack-waste-management
+    runtime: node
+    plan: free
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
+      - key: SESSION_NAME
+        value: ecotrack_token
+      - key: MONGODB_URI
+        sync: false
+      - key: JWT_SECRET
+        generateValue: true
+      - key: FRONTEND_URL
+        sync: false
+      - key: BOOTSTRAP_ADMIN_NAME
+        sync: false
+      - key: BOOTSTRAP_ADMIN_EMAIL
+        sync: false
+      - key: BOOTSTRAP_ADMIN_PHONE
+        sync: false
+      - key: BOOTSTRAP_ADMIN_LOCATION
+        sync: false
+      - key: BOOTSTRAP_ADMIN_PASSWORD
+        sync: false

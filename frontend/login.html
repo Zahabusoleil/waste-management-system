@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Sign In | EcoTrack</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"><link rel="stylesheet" href="css/styles.css"/>
+</head>
+<body class="auth-page">
+<div class="auth-layout">
+<aside class="auth-left" aria-hidden="true">
+  <div class="auth-bg-circles"><span></span><span></span></div>
+  <div class="auth-left-content">
+    <div class="auth-left-logo"><img src="images/logo.svg" alt="EcoTrack" width="32" height="32"/> EcoTrack</div>
+      <div style="margin-top:.85rem;display:flex;align-items:center;justify-content:center;gap:.6rem;padding:.75rem 1rem;background:rgba(255,255,255,.06);border-radius:10px;">
+        
+        <span style="font-size:.7rem;color:rgba(255,255,255,.5);line-height:1.4;text-align:left;max-width:12ch;">Bugema University<br>Excellence in Service</span>
+      </div>
+    <h2 class="auth-left-title">Manage Waste.<br><mark>Protect the Planet.</mark></h2>
+    <p class="auth-left-sub">Join residents, administrators and collectors working together for cleaner communities across Uganda.</p>
+    <div class="auth-features">
+      <div class="auth-feature"><div class="auth-feature-icon"><svg class="icon" aria-hidden="true" focusable="false"><use href="/images/icons.svg#icon-chart"></use></svg></div>Real-time collection tracking</div>
+      <div class="auth-feature"><div class="auth-feature-icon"><svg class="icon" aria-hidden="true" focusable="false"><use href="/images/icons.svg#icon-lock"></use></svg></div>Secure role-based access control</div>
+      <div class="auth-feature"><div class="auth-feature-icon"><svg class="icon" aria-hidden="true" focusable="false"><use href="/images/icons.svg#icon-reports"></use></svg></div>Full report lifecycle management</div>
+      <div class="auth-feature"><div class="auth-feature-icon"><svg class="icon" aria-hidden="true" focusable="false"><use href="/images/icons.svg#icon-truck"></use></svg></div>Assigned task workflow tracking</div>
+    </div>
+  </div>
+</aside>
+  <div class="auth-right">
+    <nav class="auth-top-nav">
+      <a href="/" class="back-home"><svg class="icon icon-sm" aria-hidden="true" focusable="false"><use href="/images/icons.svg#icon-home"></use></svg> Back to Home</a>
+      <span class="nav-extra">No account? <a href="register.html">Register free</a></span>
+    </nav>
+    <div class="auth-right-body">
+      <div class="auth-box">
+
+        <div id="loginView">
+          <div class="auth-box-header">
+            <h1>Welcome back</h1>
+            <p>Sign in to your EcoTrack account to continue</p>
+          </div>
+          <div class="panel">
+            <div id="loginMessage" class="alert" hidden></div>
+            <form id="loginForm" novalidate>
+              <div class="form-group">
+                <label for="loginEmail">Email address</label>
+                <input id="loginEmail" name="email" type="email" autocomplete="email" placeholder="you@example.com" required/>
+              </div>
+              <div class="form-group">
+                <label for="loginPassword">Password</label>
+                <div class="password-wrap">
+                  <input id="loginPassword" name="password" type="password" autocomplete="current-password" placeholder="Enter your password" required/>
+                  <button type="button" class="toggle-pass" aria-label="Toggle password visibility" data-target="loginPassword"><svg class="icon icon-md" aria-hidden="true" focusable="false"><use href="/images/icons.svg#icon-eye"></use></svg></button>
+                </div>
+              </div>
+              <button type="button" class="btn btn-primary btn-block" id="loginSubmitBtn" style="margin-top:.25rem;">Sign In</button>
+            </form>
+            <div class="auth-link-row">
+              <button type="button" id="showForgotBtn" style="background:none;border:none;padding:0;font-size:.83rem;color:var(--g700);font-weight:600;cursor:pointer;">Forgot password?</button>
+              <a href="register.html" class="auth-link">Create account</a>
+            </div>
+          </div>
+        </div>
+
+        <div id="forgotView" hidden>
+          <div class="auth-box-header">
+            <h1>Reset password</h1>
+            <p>Enter your email to receive a secure reset link via WhatsApp</p>
+          </div>
+          <div class="panel">
+            <div id="forgotMessage" class="alert" hidden></div>
+            <div id="forgotStep1">
+              <form id="forgotForm" novalidate>
+                <div class="form-group">
+                  <label for="forgotEmail">Registered email address</label>
+                  <input id="forgotEmail" name="email" type="email" autocomplete="email" placeholder="Enter your registered email" required/>
+                </div>
+                <button type="button" class="btn btn-primary btn-block" id="forgotSubmitBtn">Verify &amp; Send Instructions</button>
+              </form>
+            </div>
+            <div id="forgotStep2" hidden>
+              <div class="alert alert-info" id="forgotInfoBox"></div>
+              <div id="forgotWhatsappBox" style="margin-top:1rem;padding:1.1rem;background:#f0fdf4;border:1.5px solid #86efac;border-radius:12px;"></div>
+              <button type="button" class="btn btn-secondary btn-block" id="forgotBackAfterBtn" style="margin-top:1rem;">Back to Sign In</button>
+            </div>
+            <div style="text-align:center;margin-top:1rem;">
+              <button type="button" id="backToLoginBtn" style="background:none;border:none;padding:0;font-size:.83rem;color:var(--g700);font-weight:600;cursor:pointer;">&larr; Back to Sign In</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+<script src="js/main.js"></script>
+<script src="js/auth.js"></script>
+</body>
+</html>

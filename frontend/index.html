@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>EcoTrack | Waste Management &amp; Collection Tracking</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css"/>
+</head>
+<body>
+<header class="site-header">
+  <div class="container navbar">
+    <a href="/" class="brand" aria-label="EcoTrack home">
+      <span class="brand-logo"><img src="images/logo.svg" alt="" width="32" height="32" aria-hidden="true"/></span>EcoTrack
+    </a>
+    <nav class="nav-links" aria-label="Main navigation">
+      <a href="/">Home</a>
+      <a href="about.html">About</a>
+      <a href="#services">Services</a>
+      <a href="#how-it-works">How It Works</a>
+      <a href="#contact">Contact</a>
+      <a href="login.html">Login</a>
+      <a href="register.html" class="btn btn-primary btn-sm">Register</a>
+    </nav>
+  </div>
+</header>
+<main>
+
+<section class="site-hero" aria-labelledby="heroHeading">
+  <canvas id="ecoCanvas" class="hero-bg-canvas" aria-hidden="true"></canvas>
+  <div class="hero-content">
+    <div>
+      <div class="hero-eyebrow"><span aria-hidden="true"></span>Waste Management Platform</div>
+      <h1 id="heroHeading" class="hero-title">Building a <mark>Cleaner</mark> Environment Through Smarter Waste Management</h1>
+      <p class="hero-subtitle">Our platform makes it easier for residents to report waste problems, request collection services, and monitor waste collection activities in real time.</p>
+      <div class="hero-cta">
+        <a href="login.html" class="btn btn-primary btn-lg" id="reportWasteLink">Report Waste</a>
+        <a href="about.html" class="btn-outline-white">Learn More</a>
+      </div>
+      <div class="hero-stats">
+        <div class="hero-stat"><strong>3</strong><span>User Roles</span></div>
+        <div class="hero-stat"><strong>Live</strong><span>Real-time Tracking</span></div>
+        <div class="hero-stat"><strong>Secure</strong><span>End-to-end Auth</span></div>
+      </div>
+    </div>
+    <div class="hero-visual" aria-hidden="true">
+      <div class="hero-3d-container">
+        <canvas id="globe3d" width="460" height="460"></canvas>
+      </div>
+    </div>
+  </div>
+  <p id="homeMessage" role="alert" hidden style="position:relative;z-index:2;width:min(1180px,calc(100% - 2rem));margin:0 auto;padding:.85rem 1rem;border-radius:12px;"></p>
+</section>
+
+<section id="about" class="section" style="background:var(--surface);">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-label">About EcoTrack</div>
+      <h2 class="section-title">Solving Waste Management Through Technology</h2>
+      <p class="section-subtitle">EcoTrack addresses the challenge of unmanaged waste in urban and peri-urban communities by creating a transparent workflow connecting residents, administrators, and waste collectors — from report submission to verified completion.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:1rem;">
+      <div class="card"><strong style="display:block;font-size:1.1rem;font-weight:800;color:var(--green-dark);margin-bottom:.4rem;">Residents</strong><p style="font-size:.875rem;color:var(--muted);">Register, submit waste reports with photos, track status and manage eligible reports.</p></div>
+      <div class="card"><strong style="display:block;font-size:1.1rem;font-weight:800;color:var(--green-dark);margin-bottom:.4rem;">Administrators</strong><p style="font-size:.875rem;color:var(--muted);">Review and approve reports, assign collectors, manage users and track all collections.</p></div>
+      <div class="card"><strong style="display:block;font-size:1.1rem;font-weight:800;color:var(--green-dark);margin-bottom:.4rem;">Collectors</strong><p style="font-size:.875rem;color:var(--muted);">Receive assigned tasks, update collection progress and record completion notes.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="services" class="section">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-label">What We Offer</div>
+      <h2 class="section-title">Our Services</h2>
+      <p class="section-subtitle">Every step of waste management covered in one unified platform.</p>
+    </div>
+    <div class="services-grid">
+      <article class="service-card">
+        <div class="service-icon"><svg class="icon" aria-hidden="true" focusable="false"><use href="/images/icons.svg#icon-reports"></use></svg></div>
+        <h3>Waste Reporting</h3>
+        <p>Residents submit waste issues with location, category, description and optional photo for fast action and tracking.</p>
+      </article>
+      <article class="service-card">
+        <div class="service-icon"><svg class="icon" aria-hidden="true" focusable="false"><use href="/images/icons.svg#icon-dashboard"></use></svg></div>
+        <h3>Collection Management</h3>
+        <p>Administrators review reports, approve them and assign collection teams with scheduled dates from a central dashboard.</p>
+      </article>
+      <article class="service-card">
+        <div class="service-icon"><svg class="icon" aria-hidden="true" focusable="false"><use href="/images/icons.svg#icon-truck"></use></svg></div>
+        <h3>Collection Tracking</h3>
+        <p>Collectors and residents track progress from assignment through in-progress to verified completion in real time.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="how-it-works" class="section" style="background:var(--surface);">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-label">Process</div>
+      <h2 class="section-title">How It Works</h2>
+      <p class="section-subtitle">Four simple steps from registration to resolved waste collection.</p>
+    </div>
+    <div class="steps-grid">
+      <article class="step-card"><h3>Create an Account</h3><p>Residents register online in minutes. Collector accounts are provisioned by an administrator.</p></article>
+      <article class="step-card"><h3>Report Waste</h3><p>Submit a report with location, category, description and an optional photo from your dashboard.</p></article>
+      <article class="step-card"><h3>Waste Collection</h3><p>Approved reports are assigned to active collectors with a scheduled collection date.</p></article>
+      <article class="step-card"><h3>Track Progress</h3><p>Monitor task status and collection completion in real time from your personal dashboard.</p></article>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="section">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-label">Get In Touch</div>
+      <h2 class="section-title">Contact Us</h2>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-card">
+        <div class="contact-item">
+          <div class="contact-item-icon"><svg class="icon" aria-hidden="true" focusable="false"><use href="/images/icons.svg#icon-whatsapp"></use></svg></div>
+          <div><strong>WhatsApp Support</strong><span>+256 776 291 622</span></div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-item-icon"><svg class="icon" aria-hidden="true" focusable="false"><use href="/images/icons.svg#icon-home"></use></svg></div>
+          <div><strong>Location</strong><span>Kampala, Uganda</span></div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-item-icon"><svg class="icon" aria-hidden="true" focusable="false"><use href="/images/icons.svg#icon-check"></use></svg></div>
+          <div><strong>Operating Hours</strong><span>Monday – Friday, 8 AM – 6 PM EAT</span></div>
+        </div>
+      </div>
+      <div class="contact-card" style="display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;gap:1.25rem;">
+        <img src="images/logo.svg" alt="EcoTrack" width="72" height="72"/>
+        <p style="font-size:1.1rem;font-weight:700;color:var(--green-dark);">Ready to get started?</p>
+        <a href="register.html" class="btn btn-primary btn-lg btn-block">Create Free Account</a>
+        <a href="login.html" class="btn btn-secondary btn-block">Sign In</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand"><img src="images/logo.svg" alt="EcoTrack" width="32" height="32"/> EcoTrack</div>
+        <p class="footer-desc">Waste reporting and collection tracking for cleaner communities across Uganda.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="about.html">About EcoTrack</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <a href="privacy-policy.html">Privacy Policy</a>
+        <a href="terms.html">Terms &amp; Conditions</a>
+        <a href="cookies-policy.html">Cookies Policy</a>
+      </div>
+      <div class="footer-col">
+        <h4>Account</h4>
+        <a href="login.html">Sign In</a>
+        <a href="register.html">Register</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-copy">&copy; 2026 EcoTrack. All rights reserved.</span>
+    </div>
+  </div>
+</footer>
+<script src="js/main.js"></script>
+<script src="js/home.js"></script>
+<script src="js/globe3d.js"></script>
+</body>
+</html>

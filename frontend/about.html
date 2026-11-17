@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>About EcoTrack | Waste Management Platform</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"><link rel="stylesheet" href="css/styles.css"/>
+<style>
+.page-hero{padding:3.5rem 0 3rem;border-bottom:1px solid rgba(255,255,255,.08);}
+.breadcrumb{display:flex;align-items:center;gap:.5rem;font-size:.78rem;color:var(--muted);margin-bottom:1rem;}
+.breadcrumb a{color:var(--e400,#22d882);font-weight:600;}
+.breadcrumb-sep{opacity:.4;}
+.page-hero h1{font-size:clamp(2rem,4vw,2.9rem);font-weight:900;color:var(--ink);line-height:1.1;letter-spacing:-.03em;margin-bottom:.9rem;}
+.page-hero h1 em{font-style:normal;color:var(--e400,#22d882);}
+.page-hero-lead{font-size:.975rem;color:var(--muted);max-width:62ch;line-height:1.75;}
+.page-stats-row{display:flex;gap:2.5rem;margin-top:2rem;padding-top:1.75rem;border-top:1px solid rgba(255,255,255,.08);flex-wrap:wrap;}
+.page-stat strong{display:block;font-size:1.65rem;font-weight:900;color:var(--e400,#22d882);line-height:1;}
+.page-stat span{font-size:.75rem;color:var(--muted);margin-top:3px;display:block;}
+.section-alt{background:rgba(255,255,255,.025);}
+.vals-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem;}
+.val-card{background:var(--card);border:1px solid rgba(255,255,255,.07);border-radius:18px;padding:1.75rem;transition:transform .2s,box-shadow .2s;}
+.val-card:hover{transform:translateY(-4px);box-shadow:0 10px 32px rgba(0,0,0,.35);}
+.val-ico{width:46px;height:46px;border-radius:10px;margin-bottom:1rem;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#053d1f,#0d8550);}
+.val-ico .icon{width:22px;height:22px;color:#fff;}
+.val-card h3{font-size:.95rem;font-weight:700;margin-bottom:.4rem;color:var(--ink);}
+.val-card p{font-size:.83rem;color:var(--muted);line-height:1.65;}
+.roles-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem;}
+.role-card{background:var(--card);border:1px solid rgba(255,255,255,.07);border-radius:18px;overflow:hidden;transition:transform .2s,box-shadow .2s;}
+.role-card:hover{transform:translateY(-4px);box-shadow:0 10px 32px rgba(0,0,0,.35);}
+.role-top{padding:1.4rem 1.5rem 1.2rem;background:linear-gradient(135deg,#032d1a,#0d8550);display:flex;align-items:center;gap:.75rem;}
+.role-ico{width:42px;height:42px;border-radius:50%;background:rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.role-ico .icon{width:20px;height:20px;color:#fff;}
+.role-top h3{font-size:.95rem;font-weight:800;color:#fff;}
+.role-top span{font-size:.72rem;color:rgba(255,255,255,.6);display:block;margin-top:1px;}
+.role-body{padding:1.1rem 1.5rem;}
+.role-feat{display:flex;align-items:flex-start;gap:.55rem;padding:.45rem 0;border-bottom:1px solid rgba(255,255,255,.06);font-size:.8rem;color:var(--body);}
+.role-feat:last-child{border-bottom:none;padding-bottom:0;}
+.role-tick{width:17px;height:17px;border-radius:50%;background:rgba(34,216,130,.15);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;}
+.role-tick .icon{width:10px;height:10px;color:#22d882;}
+.workflow-row{display:grid;grid-template-columns:repeat(5,1fr);gap:0;position:relative;margin-top:.5rem;}
+.workflow-step{display:flex;flex-direction:column;align-items:center;text-align:center;padding:0 .4rem;position:relative;}
+.workflow-step:not(:last-child)::after{content:'';position:absolute;top:26px;right:-50%;width:100%;height:2px;background:linear-gradient(90deg,#22d882,#0d8550);z-index:0;}
+.wf-num{width:52px;height:52px;border-radius:50%;z-index:1;position:relative;background:linear-gradient(135deg,#053d1f,#0d8550);display:flex;align-items:center;justify-content:center;font-size:1rem;font-weight:800;color:#fff;box-shadow:0 4px 14px rgba(13,133,80,.4);margin-bottom:.85rem;}
+.workflow-step h4{font-size:.82rem;font-weight:700;margin-bottom:.3rem;color:var(--ink);}
+.workflow-step p{font-size:.74rem;color:var(--muted);line-height:1.5;}
+.tech-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.25rem;}
+.tech-card{background:var(--card);border:1px solid rgba(255,255,255,.07);border-radius:14px;padding:1.4rem;text-align:center;transition:transform .2s;}
+.tech-card:hover{transform:translateY(-3px);}
+.tech-badge{width:46px;height:46px;border-radius:10px;margin:0 auto .75rem;display:flex;align-items:center;justify-content:center;font-size:1.3rem;font-weight:900;color:#fff;background:linear-gradient(135deg,#032d1a,#0d8550);}
+.tech-card h4{font-size:.88rem;font-weight:700;margin-bottom:.3rem;color:var(--ink);}
+.tech-card p{font-size:.75rem;color:var(--muted);line-height:1.5;}
+.sec-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.1rem;}
+.sec-item{display:flex;gap:.85rem;align-items:flex-start;background:var(--card);border:1px solid rgba(255,255,255,.07);border-radius:12px;padding:1.1rem;}
+.sec-dot{width:34px;height:34px;border-radius:8px;flex-shrink:0;background:linear-gradient(135deg,#053d1f,#0d8550);display:flex;align-items:center;justify-content:center;}
+.sec-dot .icon{width:16px;height:16px;color:#fff;}
+.sec-item h4{font-size:.83rem;font-weight:700;margin-bottom:.2rem;color:var(--ink);}
+.sec-item p{font-size:.77rem;color:var(--muted);line-height:1.5;}
+.cta-band{background:linear-gradient(135deg,#032d1a,#085e3a,#0d8550);border-radius:20px;padding:3.5rem;text-align:center;color:#fff;}
+.cta-band h2{font-size:clamp(1.6rem,3vw,2.2rem);font-weight:800;margin-bottom:.85rem;}
+.cta-band p{font-size:.95rem;color:rgba(255,255,255,.7);max-width:52ch;margin:0 auto 2rem;line-height:1.7;}
+.cta-acts{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;}
+.btn-cta-white{background:#fff;color:#032d1a;border-radius:999px;padding:.88rem 2.2rem;font-size:.95rem;font-weight:700;display:inline-flex;align-items:center;gap:7px;transition:all .2s;}
+.btn-cta-white:hover{background:#e6f9ef;transform:translateY(-2px);}
+.btn-cta-outline{background:transparent;color:#fff;border:2px solid rgba(255,255,255,.4);border-radius:999px;padding:.85rem 2.2rem;font-size:.95rem;font-weight:600;display:inline-flex;align-items:center;gap:7px;transition:all .2s;}
+.btn-cta-outline:hover{border-color:rgba(255,255,255,.8);background:rgba(255,255,255,.08);}
+.bugema-badge{display:flex;align-items:center;gap:.85rem;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:14px;padding:1rem 1.5rem;margin-top:1.5rem;}
+.bugema-badge img{width:48px;height:48px;border-radius:50%;}
+.bugema-badge span{font-size:.82rem;color:rgba(255,255,255,.65);line-height:1.5;}
+.bugema-badge strong{display:block;font-size:.88rem;font-weight:700;color:#fff;margin-bottom:2px;}
+@media(max-width:900px){.vals-grid,.roles-grid,.tech-grid{grid-template-columns:1fr;}.workflow-row{grid-template-columns:1fr 1fr;}.workflow-step::after{display:none;}.sec-grid{grid-template-columns:1fr;}.page-stats-row{gap:1.25rem;}}
+@media(max-width:600px){.cta-band{padding:2.5rem 1.5rem;}.workflow-row{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="container navbar">
+    <a href="/" class="brand">
+      <span class="brand-logo"><img src="images/logo.svg" alt="" width="32" height="32" aria-hidden="true"/></span>
+      EcoTrack
+    </a>
+    <nav class="nav-links" aria-label="Main navigation">
+      <a href="/">Home</a>
+      <a href="about.html" aria-current="page">About</a>
+      <a href="login.html">Login</a>
+      <a href="register.html" class="btn btn-primary btn-sm">Register</a>
+    </nav>
+  </div>
+</header>
+<main>
+
+<section class="page-hero">
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="/">Home</a><span class="breadcrumb-sep">/</span><span>About</span>
+    </div>
+    <h1>About <em>EcoTrack</em></h1>
+    <p class="page-hero-lead">EcoTrack is a web-based waste management and collection tracking platform built to solve the challenge of uncoordinated waste reporting in urban and peri-urban communities across Uganda.</p>
+    <div class="page-stats-row">
+      <div class="page-stat"><strong>3</strong><span>User Roles</span></div>
+      <div class="page-stat"><strong>100%</strong><span>Real-time Tracking</span></div>
+      <div class="page-stat"><strong>5+</strong><span>Report Statuses</span></div>
+      <div class="page-stat"><strong>Secure</strong><span>End-to-end Auth</span></div>
+    </div>
+    <div class="bugema-badge">
+      
+      <div>
+        <strong>Bugema University — Excellence in Service</strong>
+        <span>EcoTrack is an academic software engineering project developed at Bugema University, Kampala, Uganda.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;">
+      <div>
+        <div class="section-label">Our Mission</div>
+        <h2 class="section-title">Why EcoTrack Exists</h2>
+        <p style="font-size:.95rem;color:var(--muted);line-height:1.78;margin-bottom:1.1rem;">Urban communities face a persistent challenge: waste accumulates faster than it is collected because reporting is fragmented, assignments are manual, and progress is invisible to everyone involved.</p>
+        <p style="font-size:.95rem;color:var(--muted);line-height:1.78;margin-bottom:1.4rem;">EcoTrack closes that gap by giving residents a simple digital reporting tool, administrators a central management dashboard, and collectors a structured task workflow — creating accountability at every step.</p>
+        <div style="display:flex;flex-direction:column;gap:.65rem;">
+          <div style="display:flex;align-items:center;gap:.75rem;font-size:.875rem;font-weight:500;color:var(--ink);">
+            <div style="width:26px;height:26px;border-radius:50%;background:rgba(34,216,130,.15);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><svg class="icon icon-sm" aria-hidden="true" focusable="false"><use href="/images/icons.svg#icon-check"></use></svg></div>
+            Transparent lifecycle from report submission to completion
+          </div>
+          <div style="display:flex;align-items:center;gap:.75rem;font-size:.875rem;font-weight:500;color:var(--ink);">
+            <div style="width:26px;height:26px;border-radius:50%;background:rgba(34,216,130,.15);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><svg class="icon icon-sm" aria-hidden="true" focusable="false"><use href="/images/icons.svg#icon-check"></use></svg></div>
+            Role-based access ensuring each user sees only what they need
+          </div>
+          <div style="display:flex;align-items:center;gap:.75rem;font-size:.875rem;font-weight:500;color:var(--ink);">
+            <div style="width:26px;height:26px;border-radius:50%;background:rgba(34,216,130,.15);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><svg class="icon icon-sm" aria-hidden="true" focusable="false"><use href="/images/icons.svg#icon-check"></use></svg></div>
+            Photo evidence upload for accurate waste classification
+          </div>
+          <div style="display:flex;align-items:center;gap:.75rem;font-size:.875rem;font-weight:500;color:var(--ink);">
+            <div style="width:26px;height:26px;border-radius:50%;background:rgba(34,216,130,.15);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><svg class="icon icon-sm" aria-hidden="true" focusable="false"><use href="/images/icons.svg#icon-check"></use></svg></div>
+            Audit logs for every administrative and collector action
+          </div>
+        </div>
+      </div>
+      <div style="background:linear-gradient(145deg,#021a0e,#053d1f,#085e3a);border-radius:20px;padding:2.25rem;color:#fff;box-shadow:0 12px 40px rgba(0,0,0,.4);">
+        
+        <h3 style="font-size:1.2rem;font-weight:800;margin-bottom:.75rem;text-align:center;">Our Vision</h3>
+        <p style="font-size:.88rem;color:rgba(255,255,255,.65);line-height:1.75;text-align:center;">A Uganda where every waste report is acknowledged, every collection is tracked, and every community has the digital tools to hold waste management accountable.</p>
+        <div style="border-top:1px solid rgba(255,255,255,.1);margin-top:1.5rem;padding-top:1.25rem;display:grid;grid-template-columns:1fr 1fr;gap:1rem;text-align:center;">
+          <div><div style="font-size:1.5rem;font-weight:900;color:#22d882;">Kampala</div><div style="font-size:.72rem;color:rgba(255,255,255,.4);margin-top:3px;">Uganda</div></div>
+          <div><div style="font-size:1.5rem;font-weight:900;color:#22d882;">2026</div><div style="font-size:.72rem;color:rgba(255,255,255,.4);margin-top:3px;">Year Founded</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-alt">
+  <div class="container">
+    <div class="section-header" style="text-align:center;max-width:580px;margin-inline:auto;">
+      <div class="section-label">Our Values</div>
+      <h2 class="section-title">What Drives Every Decision</h2>
+    </div>
+    <div class="vals-grid">
+      <div class="val-card"><div class="val-ico"><svg class="icon" aria-hidden="true" focusable="false"><use href="/images/icons.svg#icon-leaf"></use></svg></div><h3>Environmental Responsibility</h3><p>Every feature reduces the friction between a waste problem being spotted and it being resolved.</p></div>
+      <div class="val-card"><div class="val-ico"><svg class="icon" aria-hidden="true" focusable="false"><use href="/images/icons.svg#icon-lock"></use></svg></div><h3>Security &amp; Privacy First</h3><p>Passwords hashed with bcrypt, secure HttpOnly cookies, server-side RBAC on every route.</p></div>
+      <div class="val-card"><div class="val-ico"><svg class="icon" aria-hidden="true" focusable="false"><use href="/images/icons.svg#icon-users"></use></svg></div><h3>Community Accountability</h3><p>Every administrative and collector action is logged in a tamper-evident audit trail.</p></div>
+      <div class="val-card"><div class="val-ico"><svg class="icon" aria-hidden="true" focusable="false"><use href="/images/icons.svg#icon-chart"></use></svg></div><h3>Data-Driven Management</h3><p>Administrators access live statistics on residents, collectors, reports, and collections.</p></div>
+      <div class="val-card"><div class="val-ico"><svg class="icon" aria-hidden="true" focusable="false"><use href="/images/icons.svg#icon-check"></use></svg></div><h3>Reliability</h3><p>Automated smoke and integration tests maintain stability after every change.</p></div>
+      <div class="val-card"><div class="val-ico"><svg class="icon" aria-hidden="true" focusable="false"><use href="/images/icons.svg#icon-send"></use></svg></div><h3>Accessible Communication</h3><p>Password resets and notifications use WhatsApp — the most widely used channel in Uganda.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="section-header" style="text-align:center;max-width:580px;margin-inline:auto;">
+      <div class="section-label">Who Uses EcoTrack</div>
+      <h2 class="section-title">Three Roles, One Platform</h2>
+    </div>
+    <div class="roles-grid">
+      <div class="role-card">
+        <div class="role-top"><div class="role-ico"><svg class="icon" aria-hidden="true" focusable="false"><use href="/images/icons.svg#icon-user"></use></svg></div><div><h3>Resident</h3><span>Community member / Reporter</span></div></div>
+        <div class="role-body">
+          <div class="role-feat"><div class="role-tick"><svg class="icon icon-sm" aria-hidden="true" focusable="false"><use href="/images/icons.svg#icon-check"></use></svg></div>Register and manage a personal account</div>
+          <div class="role-feat"><div class="role-tick"><svg class="icon icon-sm" aria-hidden="true" focusable="false"><use href="/images/icons.svg#icon-check"></use></svg></div>Submit waste reports with category, location and description</div>
+          <div class="role-feat"><div class="role-tick"><svg class="icon icon-sm" aria-hidden="true" focusable="false"><use href="/images/icons.svg#icon-check"></use></svg></div>Upload a photo (JPEG, PNG or WebP, up to 5 MB)</div>
+          <div class="role-feat"><div class="role-tick"><svg class="icon icon-sm" aria-hidden="true" focusable="false"><use href="/images/icons.svg#icon-check"></use></svg></div>Track report status from Pending to Completed</div>
+          <div class="role-feat"><div class="role-tick"><svg class="icon icon-sm" aria-hidden="true" focusable="false"><use href="/images/icons.svg#icon-check"></use></svg></div>Edit or delete reports while Pending or Rejected</div>
+        </div>
+      </div>
+      <div class="role-card">
+        <div class="role-top"><div class="role-ico"><svg class="icon" aria-hidden="true" focusable="false"><use href="/images/icons.svg#icon-dashboard"></use></svg></div><div><h3>Administrator</h3><span>System manager / Decision maker</span></div></div>
+        <div class="role-body">
+          <div class="role-feat"><div class="role-tick"><svg class="icon icon-sm" aria-hidden="true" focusable="false"><use href="/images/icons.svg#icon-check"></use></svg></div>Protected dashboard with live statistics</div>
+          <div class="role-feat"><div class="role-tick"><svg class="icon icon-sm" aria-hidden="true" focusable="false"><use href="/images/icons.svg#icon-check"></use></svg></div>Search, filter, edit, activate or delete users</div>
+          <div class="role-feat"><div class="role-tick"><svg class="icon icon-sm" aria-hidden="true" focusable="false"><use href="/images/icons.svg#icon-check"></use></svg></div>Create and manage collector accounts</div>
+          <div class="role-feat"><div class="role-tick"><svg class="icon icon-sm" aria-hidden="true" focusable="false"><use href="/images/icons.svg#icon-check"></use></svg></div>Approve or reject pending waste reports</div>
+          <div class="role-feat"><div class="role-tick"><svg class="icon icon-sm" aria-hidden="true" focusable="false"><use href="/images/icons.svg#icon-check"></use></svg></div>Reset user passwords and notify via WhatsApp</div>
+        </div>
+      </div>
+      <div class="role-card">
+        <div class="role-top"><div class="role-ico"><svg class="icon" aria-hidden="true" focusable="false"><use href="/images/icons.svg#icon-truck"></use></svg></div><div><h3>Collector</h3><span>Field operative / Task executor</span></div></div>
+        <div class="role-body">
+          <div class="role-feat"><div class="role-tick"><svg class="icon icon-sm" aria-hidden="true" focusable="false"><use href="/images/icons.svg#icon-check"></use></svg></div>Log in with an administrator-provisioned account</div>
+          <div class="role-feat"><div class="role-tick"><svg class="icon icon-sm" aria-hidden="true" focusable="false"><use href="/images/icons.svg#icon-check"></use></svg></div>View assigned collection tasks and report details</div>
+          <div class="role-feat"><div class="role-tick"><svg class="icon icon-sm" aria-hidden="true" focusable="false"><use href="/images/icons.svg#icon-check"></use></svg></div>Start, progress, or block tasks with a reason</div>
+          <div class="role-feat"><div class="role-tick"><svg class="icon icon-sm" aria-hidden="true" focusable="false"><use href="/images/icons.svg#icon-check"></use></svg></div>Mark tasks complete with notes</div>
+          <div class="role-feat"><div class="role-tick"><svg class="icon icon-sm" aria-hidden="true" focusable="false"><use href="/images/icons.svg#icon-check"></use></svg></div>Access only tasks assigned to their own account</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-alt">
+  <div class="container">
+    <div class="section-header" style="text-align:center;max-width:580px;margin-inline:auto;">
+      <div class="section-label">System Workflow</div>
+      <h2 class="section-title">From Report to Resolution</h2>
+    </div>
+    <div class="workflow-row">
+      <div class="workflow-step"><div class="wf-num">1</div><h4>Report Submitted</h4><p>Resident submits report. Status: <strong>Pending</strong>.</p></div>
+      <div class="workflow-step"><div class="wf-num">2</div><h4>Admin Review</h4><p>Approved or rejected. Status: <strong>Approved/Rejected</strong>.</p></div>
+      <div class="workflow-step"><div class="wf-num">3</div><h4>Collector Assigned</h4><p>Assigned with date. Status: <strong>Assigned</strong>.</p></div>
+      <div class="workflow-step"><div class="wf-num">4</div><h4>In Progress</h4><p>Collector starts work. Status: <strong>In Progress</strong>.</p></div>
+      <div class="workflow-step"><div class="wf-num">5</div><h4>Completed</h4><p>Task marked done. Status: <strong>Completed</strong>.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="section-header" style="text-align:center;max-width:580px;margin-inline:auto;">
+      <div class="section-label">Technology</div>
+      <h2 class="section-title">Built on a Proven Stack</h2>
+    </div>
+    <div class="tech-grid">
+      <div class="tech-card"><div class="tech-badge">N</div><h4>Node.js &amp; Express</h4><p>RESTful API with structured routes, controllers, validators and middleware.</p></div>
+      <div class="tech-card"><div class="tech-badge">M</div><h4>MongoDB &amp; Mongoose</h4><p>Document database with typed schemas, indexed queries and ObjectId references.</p></div>
+      <div class="tech-card"><div class="tech-badge">J</div><h4>JWT &amp; Secure Cookies</h4><p>HttpOnly SameSite cookies, 7-day expiry, rate-limited login and CSRF checks.</p></div>
+      <div class="tech-card"><div class="tech-badge">H</div><h4>HTML5 / CSS3 / JS</h4><p>Vanilla frontend — no framework. Responsive, accessible interface.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-alt">
+  <div class="container">
+    <div class="section-header" style="text-align:center;max-width:580px;margin-inline:auto;">
+      <div class="section-label">Security</div>
+      <h2 class="section-title">Security by Design</h2>
+    </div>
+    <div class="sec-grid">
+      <div class="sec-item"><div class="sec-dot"><svg class="icon" aria-hidden="true" focusable="false"><use href="/images/icons.svg#icon-lock"></use></svg></div><div><h4>Password Hashing</h4><p>All passwords hashed with bcrypt cost factor 10. Plain-text never stored.</p></div></div>
+      <div class="sec-item"><div class="sec-dot"><svg class="icon" aria-hidden="true" focusable="false"><use href="/images/icons.svg#icon-users"></use></svg></div><div><h4>Role-Based Access Control</h4><p>Every API route protected by auth and role middleware independently of the UI.</p></div></div>
+      <div class="sec-item"><div class="sec-dot"><svg class="icon" aria-hidden="true" focusable="false"><use href="/images/icons.svg#icon-reports"></use></svg></div><div><h4>Input Validation</h4><p>All request bodies validated server-side with express-validator before DB storage.</p></div></div>
+      <div class="sec-item"><div class="sec-dot"><svg class="icon" aria-hidden="true" focusable="false"><use href="/images/icons.svg#icon-chart"></use></svg></div><div><h4>Rate Limiting</h4><p>Login limited to 10 attempts per 15 min. Reset requests limited to 5 per 15 min.</p></div></div>
+      <div class="sec-item"><div class="sec-dot"><svg class="icon" aria-hidden="true" focusable="false"><use href="/images/icons.svg#icon-send"></use></svg></div><div><h4>CSRF Protection</h4><p>Cross-site requests rejected using origin and Sec-Fetch-Site header checks.</p></div></div>
+      <div class="sec-item"><div class="sec-dot"><svg class="icon" aria-hidden="true" focusable="false"><use href="/images/icons.svg#icon-check"></use></svg></div><div><h4>Audit Logging</h4><p>Every administrative action recorded in a tamper-evident audit log collection.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="cta-band">
+      <h2>Ready to Experience EcoTrack?</h2>
+      <p>Register as a resident to submit your first waste report, or contact us via WhatsApp to learn more about how EcoTrack can serve your community.</p>
+      <div class="cta-acts">
+        <a href="register.html" class="btn-cta-white">Create Free Account</a>
+        <a href="https://wa.me/256776291622" target="_blank" rel="noopener noreferrer" class="btn-whatsapp"><svg class="icon" aria-hidden="true" focusable="false"><use href="/images/icons.svg#icon-whatsapp"></use></svg> Chat on WhatsApp</a>
+        <a href="login.html" class="btn-cta-outline">Sign In</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand"><img src="images/logo.svg" alt="EcoTrack" width="28" height="28"/> EcoTrack</div>
+        <p class="footer-desc">Waste reporting and collection tracking for cleaner communities.</p>
+      </div>
+      <div class="footer-col"><h4>Company</h4><a href="about.html">About</a><a href="/#contact">Contact</a></div>
+      <div class="footer-col"><h4>Legal</h4><a href="privacy-policy.html">Privacy Policy</a><a href="terms.html">Terms</a><a href="cookies-policy.html">Cookies</a></div>
+      <div class="footer-col"><h4>Account</h4><a href="login.html">Sign In</a><a href="register.html">Register</a></div>
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-copy">&copy; 2026 EcoTrack. All rights reserved.</span>
+      <div class="footer-links"><a href="privacy-policy.html">Privacy</a><a href="terms.html">Terms</a><a href="cookies-policy.html">Cookies</a></div>
+    </div>
+  </div>
+</footer>
+<script src="js/main.js"></script>
+</body>
+</html>

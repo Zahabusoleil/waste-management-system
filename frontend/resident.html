@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Resident Dashboard | EcoTrack</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"><link rel="stylesheet" href="css/styles.css"/>
+</head>
+<body>
+<div id="sidebarOverlay" class="sidebar-overlay"></div>
+<aside class="dash-sidebar" id="dashSidebar">
+  <div class="dash-sidebar-logo"><img src="images/logo.svg" alt="EcoTrack" width="30" height="30"/> EcoTrack</div>
+  <nav class="dash-nav" aria-label="Resident navigation">
+    <div class="dash-nav-section">Main</div>
+    <a href="#" data-section="overview" class="active"><div class="nav-icon"><svg class="icon" aria-hidden="true" focusable="false"><use href="/images/icons.svg#icon-home"></use></svg></div>Overview</a>
+    <a href="#" data-section="submit"><div class="nav-icon"><svg class="icon" aria-hidden="true" focusable="false"><use href="/images/icons.svg#icon-reports"></use></svg></div>Submit Report</a>
+    <a href="#" data-section="my-reports"><div class="nav-icon"><svg class="icon" aria-hidden="true" focusable="false"><use href="/images/icons.svg#icon-chart"></use></svg></div>My Reports</a>
+    <div class="dash-nav-section">Account</div>
+    <a href="#" data-section="profile"><div class="nav-icon"><svg class="icon" aria-hidden="true" focusable="false"><use href="/images/icons.svg#icon-user"></use></svg></div>Profile</a>
+  </nav>
+  <div class="dash-sidebar-footer">
+    <div class="user-chip">
+      <div class="user-chip-avatar" id="residentAvatar">R</div>
+      <div class="user-chip-info">
+        <strong id="residentName">Resident</strong>
+        <span>Resident Account</span>
+      </div>
+    </div>
+    <button class="btn-logout-sidebar" data-logout><svg class="icon icon-sm" aria-hidden="true" focusable="false"><use href="/images/icons.svg#icon-logout"></use></svg> Sign Out</button>
+  </div>
+</aside>
+
+<div class="dash-main">
+  <header class="dash-topbar">
+    <div style="display:flex;align-items:center;gap:1rem;">
+      <button class="sidebar-toggle" id="sidebarToggle" aria-label="Toggle navigation"><svg class="icon icon-lg" aria-hidden="true" focusable="false"><use href="/images/icons.svg#icon-menu"></use></svg></button>
+      <div>
+        <div class="dash-page-title" id="topbarTitle">Overview</div>
+        <div class="dash-breadcrumb">EcoTrack / Resident</div>
+      </div>
+    </div>
+    <div class="topbar-actions">
+      <div id="residentMessage" class="alert" hidden style="margin:0;padding:.5rem 1rem;font-size:.82rem;max-width:360px;"></div>
+    </div>
+  </header>
+
+  <div class="dash-content">
+
+    <section id="sec-overview" class="dash-section">
+      <div class="stats-grid" id="residentStatsGrid">
+        <div class="stat-box"><h4><svg class="icon icon-sm" aria-hidden="true" focusable="false"><use href="/images/icons.svg#icon-reports"></use></svg> Total Reports</h4><h3>0</h3></div>
+        <div class="stat-box"><h4><svg class="icon icon-sm" aria-hidden="true" focusable="false"><use href="/images/icons.svg#icon-chart"></use></svg> Pending</h4><h3>0</h3></div>
+        <div class="stat-box"><h4><svg class="icon icon-sm" aria-hidden="true" focusable="false"><use href="/images/icons.svg#icon-truck"></use></svg> In Progress</h4><h3>0</h3></div>
+        <div class="stat-box"><h4><svg class="icon icon-sm" aria-hidden="true" focusable="false"><use href="/images/icons.svg#icon-check"></use></svg> Completed</h4><h3>0</h3></div>
+      </div>
+      <div class="card">
+        <div class="card-header">
+          <h2><div class="card-icon"><svg class="icon" aria-hidden="true" focusable="false"><use href="/images/icons.svg#icon-chart"></use></svg></div>Recent Reports</h2>
+          <a href="#" class="btn btn-primary btn-sm" data-section="submit">+ New Report</a>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Category</th><th>Location</th><th>Status</th><th>Date</th></tr></thead>
+            <tbody id="recentReportsTable"><tr><td colspan="4" class="empty-state">No reports yet. Submit your first report.</td></tr></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section id="sec-submit" class="dash-section" hidden>
+      <div class="card" style="max-width:680px;">
+        <div class="card-header">
+          <h2><div class="card-icon"><svg class="icon" aria-hidden="true" focusable="false"><use href="/images/icons.svg#icon-reports"></use></svg></div>Submit Waste Report</h2>
+        </div>
+        <form id="reportForm" enctype="multipart/form-data">
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="category">Waste category</label>
+              <select id="category" name="category">
+                <option>Plastic</option><option>Organic</option><option>Paper</option><option>Metal</option><option>General Waste</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="location">Location</label>
+              <input id="location" name="location" type="text" placeholder="e.g. Kampala, Nakawa market" required/>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="description">Description</label>
+            <textarea id="description" name="description" placeholder="Describe the waste problem in detail (minimum 10 characters)" required></textarea>
+          </div>
+          <div class="form-group">
+            <label for="image">Photo (optional — JPEG, PNG or WebP, max 5 MB)</label>
+            <input id="image" name="image" type="file" accept="image/jpeg,image/png,image/webp"/>
+          </div>
+          <button type="submit" class="btn btn-primary">Submit Report</button>
+        </form>
+      </div>
+    </section>
+
+    <section id="sec-my-reports" class="dash-section" hidden>
+      <div class="card">
+        <div class="card-header">
+          <h2><div class="card-icon"><svg class="icon" aria-hidden="true" focusable="false"><use href="/images/icons.svg#icon-reports"></use></svg></div>My Waste Reports</h2>
+          <select id="statusFilter" style="margin:0;padding:.4rem .75rem;font-size:.82rem;border-radius:6px;border:1.5px solid var(--border);background:var(--surface);">
+            <option value="all">All statuses</option>
+            <option>Pending</option><option>Approved</option><option>Assigned</option>
+            <option>In Progress</option><option>Completed</option><option>Rejected</option>
+          </select>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Category</th><th>Location</th><th>Description</th><th>Photo</th><th>Status</th><th>Date</th><th>Actions</th></tr></thead>
+            <tbody id="reportList"><tr><td colspan="7" class="empty-state">No reports found.</td></tr></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section id="sec-profile" class="dash-section" hidden>
+      <div class="card" style="max-width:580px;">
+        <div class="card-header">
+          <h2><div class="card-icon"><svg class="icon" aria-hidden="true" focusable="false"><use href="/images/icons.svg#icon-user"></use></svg></div>My Profile</h2>
+        </div>
+        <div id="residentProfile"></div>
+      </div>
+    </section>
+
+  </div>
+</div>
+
+<dialog id="editReportDialog" aria-labelledby="editReportTitle">
+  <div class="modal-header">
+    <h2 id="editReportTitle">Edit Waste Report</h2>
+    <button class="btn-close" id="cancelEditReport" aria-label="Close">&times;</button>
+  </div>
+  <form id="editReportForm">
+    <input id="editReportId" name="reportId" type="hidden"/>
+    <div class="form-group">
+      <label for="editCategory">Waste category</label>
+      <select id="editCategory" name="category">
+        <option>Plastic</option><option>Organic</option><option>Paper</option><option>Metal</option><option>General Waste</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="editLocation">Location</label>
+      <input id="editLocation" name="location" required minlength="2" maxlength="200"/>
+    </div>
+    <div class="form-group">
+      <label for="editDescription">Description</label>
+      <textarea id="editDescription" name="description" required minlength="10" maxlength="2000"></textarea>
+    </div>
+    <div class="form-group">
+      <label for="editImage">Replace photo (optional, max 5 MB)</label>
+      <input id="editImage" name="image" type="file" accept="image/jpeg,image/png,image/webp"/>
+    </div>
+    <div class="dialog-actions">
+      <button type="submit" class="btn btn-primary">Save Changes</button>
+      <button type="button" class="btn btn-ghost" onclick="document.getElementById('editReportDialog').close()">Cancel</button>
+    </div>
+  </form>
+</dialog>
+
+<script src="js/main.js"></script>
+<script src="js/resident.js"></script>
+</body>
+</html>

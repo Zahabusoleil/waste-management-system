@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" aria-label="Bugema University logo">
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#f0f4ff"/>
+    </radialGradient>
+  </defs>
+  <!-- Outer serrated border ring -->
+  <circle cx="100" cy="100" r="97" fill="#1a2a9c" />
+  <circle cx="100" cy="100" r="88" fill="white" />
+  <circle cx="100" cy="100" r="84" fill="#1a2a9c" />
+  <circle cx="100" cy="100" r="80" fill="white" />
+
+  <!-- Inner content area -->
+  <circle cx="100" cy="100" r="76" fill="url(#bg)" />
+
+  <!-- Cross dividers -->
+  <line x1="100" y1="30" x2="100" y2="170" stroke="#1a2a9c" stroke-width="1.5"/>
+  <line x1="30" y1="100" x2="170" y2="100" stroke="#1a2a9c" stroke-width="1.5"/>
+
+  <!-- Top: Torch flame -->
+  <ellipse cx="100" cy="40" rx="6" ry="10" fill="#e63a00" opacity=".9"/>
+  <ellipse cx="100" cy="38" rx="3.5" ry="6" fill="#ff9500"/>
+  <rect x="97" y="48" width="6" height="18" rx="2" fill="#444"/>
+
+  <!-- Yellow rays behind torch -->
+  <g stroke="#f5c518" stroke-width="1.2" opacity=".7">
+    <line x1="100" y1="26" x2="100" y2="20"/>
+    <line x1="108" y1="28" x2="112" y2="22"/>
+    <line x1="92"  y1="28" x2="88"  y2="22"/>
+    <line x1="115" y1="34" x2="121" y2="29"/>
+    <line x1="85"  y1="34" x2="79"  y2="29"/>
+  </g>
+
+  <!-- Bottom-left: Book -->
+  <rect x="38" y="110" width="40" height="28" rx="3" fill="#fff" stroke="#1a2a9c" stroke-width="1.5"/>
+  <line x1="58" y1="110" x2="58" y2="138" stroke="#1a2a9c" stroke-width="1.2"/>
+  <line x1="42" y1="118" x2="56" y2="118" stroke="#aaa" stroke-width="1"/>
+  <line x1="42" y1="123" x2="56" y2="123" stroke="#aaa" stroke-width="1"/>
+  <line x1="42" y1="128" x2="56" y2="128" stroke="#aaa" stroke-width="1"/>
+  <line x1="60" y1="118" x2="74" y2="118" stroke="#aaa" stroke-width="1"/>
+  <line x1="60" y1="123" x2="74" y2="123" stroke="#aaa" stroke-width="1"/>
+  <line x1="60" y1="128" x2="74" y2="128" stroke="#aaa" stroke-width="1"/>
+
+  <!-- Bottom-right: Spanner + Key -->
+  <line x1="118" y1="140" x2="155" y2="110" stroke="#1a2a9c" stroke-width="4" stroke-linecap="round"/>
+  <circle cx="118" cy="140" r="6" fill="none" stroke="#1a2a9c" stroke-width="2.5"/>
+  <circle cx="155" cy="110" r="5" fill="none" stroke="#1a2a9c" stroke-width="2.5"/>
+
+  <!-- Top-right: Football -->
+  <circle cx="145" cy="65" r="20" fill="white" stroke="#333" stroke-width="1.5"/>
+  <path d="M145 48 L149 55 L145 62 L141 55 Z" fill="#333"/>
+  <path d="M129 62 L136 59 L141 55 L136 68 Z" fill="#333"/>
+  <path d="M161 62 L154 59 L149 55 L154 68 Z" fill="#333"/>
+  <path d="M134 76 L136 68 L145 72 L141 79 Z" fill="#333"/>
+  <path d="M156 76 L154 68 L145 72 L149 79 Z" fill="#333"/>
+
+  <!-- Year 1948 in centre -->
+  <text x="100" y="104" font-family="Georgia,serif" font-size="10" font-weight="700" text-anchor="middle" fill="#c00">1948</text>
+
+  <!-- Top arc text: BUGEMA UNIVERSITY -->
+  <path id="topArc" d="M 25,100 A 75,75 0 0,1 175,100" fill="none"/>
+  <text font-family="Arial,sans-serif" font-size="9.5" font-weight="800" fill="#1a2a9c" letter-spacing="1.5">
+    <textPath href="#topArc" startOffset="8%">BUGEMA UNIVERSITY</textPath>
+  </text>
+
+  <!-- Bottom arc text: EXCELLENCE IN SERVICE -->
+  <path id="botArc" d="M 25,100 A 75,75 0 0,0 175,100" fill="none"/>
+  <text font-family="Arial,sans-serif" font-size="9" font-weight="700" fill="#1a2a9c" letter-spacing="1">
+    <textPath href="#botArc" startOffset="5%">EXCELLENCE IN SERVICE</textPath>
+  </text>
+</svg>

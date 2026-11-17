@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 420" role="img" aria-label="Waste management illustration">
+  <rect width="500" height="420" fill="#edf9f1"/>
+  <circle cx="365" cy="112" r="62" fill="#bce7c5"/>
+  <path d="M120 295c40-86 104-148 168-148 72 0 110 72 95 138-14 60-56 90-116 90H160c-58 0-91-32-92-80 0-11 0-27 8-40 15-23 27-36 44-60z" fill="#1f7a4c" opacity="0.12"/>
+  <path d="M160 238l48-40 42 20 45-58 47 53 20-14 28 55-52 29-34-18-42 31-40-18-37 20-28-32z" fill="#1f7a4c"/>
+  <rect x="80" y="284" width="235" height="22" rx="11" fill="#c9e9d0"/>
+  <rect x="102" y="112" width="52" height="132" rx="18" fill="#d6efdd"/>
+  <circle cx="128" cy="88" r="38" fill="#f3b93f"/>
+  <path d="M125 57h6v28h-6zm-25 9h6v35h-6zm50 4h6v31h-6z" fill="#1f7a4c"/>
+  <path d="M96 323h160" stroke="#5d665f" stroke-width="4" stroke-linecap="round"/>
+</svg>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Collector Dashboard | EcoTrack</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"><link rel="stylesheet" href="css/styles.css"/>
+</head>
+<body>
+<div id="sidebarOverlay" class="sidebar-overlay"></div>
+<aside class="dash-sidebar" id="dashSidebar">
+  <div class="dash-sidebar-logo"><img src="images/logo.svg" alt="EcoTrack" width="30" height="30"/> EcoTrack</div>
+  <nav class="dash-nav" aria-label="Collector navigation">
+    <div class="dash-nav-section">Main</div>
+    <a href="#" data-section="overview" class="active"><div class="nav-icon"><svg class="icon" aria-hidden="true" focusable="false"><use href="/images/icons.svg#icon-dashboard"></use></svg></div>Overview</a>
+    <a href="#" data-section="tasks"><div class="nav-icon"><svg class="icon" aria-hidden="true" focusable="false"><use href="/images/icons.svg#icon-truck"></use></svg></div>Assigned Tasks</a>
+    <a href="#" data-section="history"><div class="nav-icon"><svg class="icon" aria-hidden="true" focusable="false"><use href="/images/icons.svg#icon-check"></use></svg></div>History</a>
+    <div class="dash-nav-section">Account</div>
+    <a href="#" data-section="profile"><div class="nav-icon"><svg class="icon" aria-hidden="true" focusable="false"><use href="/images/icons.svg#icon-user"></use></svg></div>Profile</a>
+  </nav>
+  <div class="dash-sidebar-footer">
+    <div class="user-chip">
+      <div class="user-chip-avatar" id="collectorAvatar">C</div>
+      <div class="user-chip-info">
+        <strong id="collectorName">Collector</strong>
+        <span>Collector Account</span>
+      </div>
+    </div>
+    <button class="btn-logout-sidebar" data-logout><svg class="icon icon-sm" aria-hidden="true" focusable="false"><use href="/images/icons.svg#icon-logout"></use></svg> Sign Out</button>
+  </div>
+</aside>
+
+<div class="dash-main">
+  <header class="dash-topbar">
+    <div style="display:flex;align-items:center;gap:1rem;">
+      <button class="sidebar-toggle" id="sidebarToggle" aria-label="Toggle navigation"><svg class="icon icon-lg" aria-hidden="true" focusable="false"><use href="/images/icons.svg#icon-menu"></use></svg></button>
+      <div>
+        <div class="dash-page-title" id="topbarTitle">Overview</div>
+        <div class="dash-breadcrumb">EcoTrack / Collector</div>
+      </div>
+    </div>
+    <div class="topbar-actions">
+      <div id="collectorMessage" class="alert" hidden style="margin:0;padding:.5rem 1rem;font-size:.82rem;max-width:360px;"></div>
+    </div>
+  </header>
+
+  <div class="dash-content">
+
+    <section id="sec-overview" class="dash-section">
+      <div class="stats-grid" id="collectorStatsGrid">
+        <div class="stat-box"><h4><svg class="icon icon-sm" aria-hidden="true" focusable="false"><use href="/images/icons.svg#icon-truck"></use></svg> Assigned</h4><h3>0</h3></div>
+        <div class="stat-box"><h4><svg class="icon icon-sm" aria-hidden="true" focusable="false"><use href="/images/icons.svg#icon-check"></use></svg> Completed</h4><h3>0</h3></div>
+        <div class="stat-box"><h4><svg class="icon icon-sm" aria-hidden="true" focusable="false"><use href="/images/icons.svg#icon-reports"></use></svg> Blocked</h4><h3>0</h3></div>
+        <div class="stat-box"><h4><svg class="icon icon-sm" aria-hidden="true" focusable="false"><use href="/images/icons.svg#icon-chart"></use></svg> Total Tasks</h4><h3>0</h3></div>
+      </div>
+      <div class="card">
+        <div class="card-header">
+          <h2><div class="card-icon"><svg class="icon" aria-hidden="true" focusable="false"><use href="/images/icons.svg#icon-truck"></use></svg></div>Active Tasks</h2>
+          <a href="#" class="btn btn-secondary btn-sm" data-section="tasks">View all</a>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Category</th><th>Location</th><th>Scheduled</th><th>Status</th></tr></thead>
+            <tbody id="overviewTaskTable"><tr><td colspan="4" class="empty-state">No active tasks assigned.</td></tr></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section id="sec-tasks" class="dash-section" hidden>
+      <div class="card">
+        <div class="card-header">
+          <h2><div class="card-icon"><svg class="icon" aria-hidden="true" focusable="false"><use href="/images/icons.svg#icon-truck"></use></svg></div>Assigned Collection Tasks</h2>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Category</th><th>Location</th><th>Description</th><th>Photo</th><th>Resident</th><th>Scheduled</th><th>Status</th><th>Notes</th><th>Actions</th></tr></thead>
+            <tbody id="taskTable"><tr><td colspan="9" class="empty-state">No tasks assigned yet.</td></tr></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section id="sec-history" class="dash-section" hidden>
+      <div class="card">
+        <div class="card-header">
+          <h2><div class="card-icon"><svg class="icon" aria-hidden="true" focusable="false"><use href="/images/icons.svg#icon-check"></use></svg></div>Completed Collection History</h2>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Category</th><th>Location</th><th>Completed On</th><th>Notes</th></tr></thead>
+            <tbody id="collectionHistory"><tr><td colspan="4" class="empty-state">No completed collections yet.</td></tr></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section id="sec-profile" class="dash-section" hidden>
+      <div class="card" style="max-width:580px;">
+        <div class="card-header">
+          <h2><div class="card-icon"><svg class="icon" aria-hidden="true" focusable="false"><use href="/images/icons.svg#icon-user"></use></svg></div>My Profile</h2>
+        </div>
+        <div id="collectorProfile"></div>
+      </div>
+    </section>
+
+  </div>
+</div>
+
+<script src="js/main.js"></script>
+<script src="js/collector.js"></script>
+</body>
+</html>
