@@ -24,8 +24,12 @@ app.use(helmet({
   crossOriginResourcePolicy: false,
 }));
 
-const allowedOrigins = (process.env.FRONTEND_URL || "")
-  .split(",")
+const allowedOrigins = [
+  process.env.FRONTEND_URL,
+  process.env.RENDER_EXTERNAL_URL,
+]
+  .filter(Boolean)
+  .flatMap((origin) => origin.split(","))
   .map((origin) => origin.trim())
   .filter(Boolean);
 
@@ -35,6 +39,17 @@ app.use(
       if (!origin || allowedOrigins.includes(origin)) {
         return callback(null, true);
       }
+
+      try {
+        const url = new URL(origin);
+        if (
+          url.hostname.endsWith(".onrender.com") ||
+          url.hostname === "localhost" ||
+          url.hostname === "127.0.0.1"
+        ) {
+          return callback(null, true);
+        }
+      } catch {}
 
       return callback(null, false);
     },
