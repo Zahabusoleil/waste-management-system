@@ -48,123 +48,151 @@
       <h1 id="heroHeading" class="hero-title">Building a <span class="eco">Cleaner</span> Future Through Smarter Waste Management.</h1>
       <p class="hero-subtitle">Empowering communities with intelligent waste reporting, efficient collection management and real-time tracking.</p>
       <div class="hero-cta">
-        <a href="login.html" class="btn btn-primary btn-lg" id="reportWasteLink">🗑️ Report Waste</a>
-        <a href="about.html" class="btn-outline-white">Learn More ›</a>
+        <a href="login.html" class="btn-hero-report" id="reportWasteLink">
+          <span>🗑️</span> Report Waste <span>→</span>
+        </a>
+        <a href="about.html" class="btn-hero-learn">
+          Learn More <span class="btn-play-circle">▶</span>
+        </a>
       </div>
       <div class="hero-stats">
         <div class="hero-stat">
-          <strong id="statTotalReportsHero">—</strong>
-          <span>Waste Reports</span>
+          <div class="hero-stat-icon">📄</div>
+          <div class="hero-stat-body">
+            <strong id="statTotalReports">1,250+</strong>
+            <span>Waste Reports</span>
+          </div>
         </div>
         <div class="hero-stat">
-          <strong id="statCompletedHero">—</strong>
-          <span>Collections</span>
+          <div class="hero-stat-icon">✓</div>
+          <div class="hero-stat-body">
+            <strong id="statCompleted">980+</strong>
+            <span>Collections</span>
+          </div>
         </div>
         <div class="hero-stat">
-          <strong id="statActiveUsersHero">—</strong>
-          <span>Active Users</span>
+          <div class="hero-stat-icon">👥</div>
+          <div class="hero-stat-body">
+            <strong id="statActiveUsers">120+</strong>
+            <span>Active Users</span>
+          </div>
         </div>
         <div class="hero-stat">
-          <strong>25+</strong>
-          <span>Communities</span>
+          <div class="hero-stat-icon">🌿</div>
+          <div class="hero-stat-body">
+            <strong id="statCommunities">25+</strong>
+            <span>Communities</span>
+          </div>
         </div>
       </div>
     </div>
     <div class="hero-right" aria-hidden="true">
-      <div class="hero-bg-blob"></div>
-      <div class="hero-bg-blob2"></div>
-      <div class="hero-right-inner">
-        <span class="hero-truck-emoji">🚛</span>
-        <div style="font-size:4rem;margin-top:-.5rem;">♻️</div>
-        <div class="hero-truck-label">EcoTrack Fleet</div>
-        <div class="hero-truck-sub">Clean communities, smarter collections</div>
-      </div>
+      <img
+        src="images/hero-truck-retina.png"
+        alt="EcoTrack Smart Waste Collection Truck"
+        class="hero-truck-img"
+      />
     </div>
   </div>
   <p id="homeMessage" role="alert" hidden style="position:relative;z-index:2;width:min(1180px,calc(100% - 2rem));margin:0 auto;padding:.85rem 1rem;border-radius:12px;"></p>
 </section>
 
 <!-- ══════════════════════════════════════════════════════════
-     STATS ROW (connected to real data via home.js)
-══════════════════════════════════════════════════════════ -->
-<div class="stats-row">
-  <div class="container">
-    <div class="stats-row-grid">
-      <div class="stat-card">
-        <div class="stat-card-icon">📋</div>
-        <div class="stat-card-info">
-          <span class="stat-card-value" id="statTotalReports">—</span>
-          <span class="stat-card-label">Total Waste Reports</span>
-        </div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-card-icon">✅</div>
-        <div class="stat-card-info">
-          <span class="stat-card-value" id="statCompleted">—</span>
-          <span class="stat-card-label">Completed Collections</span>
-        </div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-card-icon">👥</div>
-        <div class="stat-card-info">
-          <span class="stat-card-value" id="statActiveUsers">—</span>
-          <span class="stat-card-label">Active Users</span>
-        </div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-card-icon">🌍</div>
-        <div class="stat-card-info">
-          <span class="stat-card-value" id="statCommunities">25+</span>
-          <span class="stat-card-label">Communities Served</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ══════════════════════════════════════════════════════════
-     FEATURES ROW
+     FEATURES ROW & PROMO PANEL
 ══════════════════════════════════════════════════════════ -->
 <div class="features-section">
   <div class="container">
     <div class="features-row">
       <div class="feature-item">
-        <div class="feature-icon">📋</div>
+        <img src="images/icon-report-2x.png" alt="" class="feature-icon-img" aria-hidden="true"/>
         <div class="feature-text">
           <h3>Report Waste</h3>
           <p>Easily report waste in your community</p>
         </div>
       </div>
       <div class="feature-item">
-        <div class="feature-icon">🚛</div>
+        <img src="images/icon-track-2x.png" alt="" class="feature-icon-img" aria-hidden="true"/>
         <div class="feature-text">
           <h3>Track Collection</h3>
           <p>Follow the collection process in real-time</p>
         </div>
       </div>
       <div class="feature-item">
-        <div class="feature-icon">♻️</div>
+        <img src="images/icon-recycle-2x.png" alt="" class="feature-icon-img" aria-hidden="true"/>
         <div class="feature-text">
           <h3>Promote Recycling</h3>
           <p>Support a cleaner, greener Uganda</p>
         </div>
       </div>
       <div class="feature-item">
-        <div class="feature-icon">🌍</div>
+        <img src="images/icon-future-2x.png" alt="" class="feature-icon-img" aria-hidden="true"/>
         <div class="feature-text">
           <h3>Build a Green Future</h3>
           <p>Together for a sustainable environment</p>
         </div>
       </div>
       <div class="promo-panel">
-        <div class="promo-globe">🌐</div>
-        <h3>Join EcoTrack Today</h3>
-        <p>Be part of the solution for a cleaner and healthier environment</p>
-        <a href="register.html" class="btn btn-primary btn-sm">Get Started →</a>
+        <div class="promo-content">
+          <h3>Join EcoTrack Today</h3>
+          <p>Be part of the solution for a cleaner and healthier environment</p>
+          <a href="register.html" class="btn-promo-start">Get Started →</a>
+        </div>
+        <img src="images/promo-globe-retina.png" alt="Global sustainability" class="promo-globe-img" aria-hidden="true"/>
       </div>
     </div>
   </div>
 </div>
+
+<!-- ══════════════════════════════════════════════════════════
+     DASHBOARD SHOWCASE (from reference image)
+══════════════════════════════════════════════════════════ -->
+<section class="dashboards-showcase-section" id="dashboards">
+  <div class="container">
+    <div class="section-header" style="text-align:center;margin-bottom:2.5rem;">
+      <div class="section-label">All-In-One Platform</div>
+      <h2 class="section-title">Designed for Every Community Stakeholder</h2>
+      <p class="section-subtitle">Dedicated, role-tailored dashboards connecting residents, administrators, and waste collectors in one unified real-time workflow.</p>
+    </div>
+    <div class="dashboards-showcase-grid">
+      <div class="dash-preview-card">
+        <div class="dash-preview-img-wrap">
+          <img src="images/preview-resident-dashboard-2x.jpg" alt="Resident Dashboard" loading="lazy"/>
+        </div>
+        <div class="dash-preview-footer">
+          <div>
+            <h3>Resident Dashboard</h3>
+            <p>Report waste, attach photos, and monitor collection status in real-time.</p>
+          </div>
+          <a href="login.html" class="btn btn-secondary btn-sm">Explore ›</a>
+        </div>
+      </div>
+      <div class="dash-preview-card active-card">
+        <div class="dash-preview-img-wrap">
+          <img src="images/preview-admin-dashboard-2x.jpg" alt="Administrator Dashboard" loading="lazy"/>
+        </div>
+        <div class="dash-preview-footer">
+          <div>
+            <h3>Administrator Dashboard</h3>
+            <p>Review reports, dispatch collection teams, manage users, and view analytics.</p>
+          </div>
+          <a href="login.html" class="btn btn-primary btn-sm">Explore ›</a>
+        </div>
+      </div>
+      <div class="dash-preview-card">
+        <div class="dash-preview-img-wrap">
+          <img src="images/preview-collector-dashboard-2x.jpg" alt="Collector Dashboard" loading="lazy"/>
+        </div>
+        <div class="dash-preview-footer">
+          <div>
+            <h3>Collector Dashboard</h3>
+            <p>View scheduled routes, update pickup progress, and submit completion reports.</p>
+          </div>
+          <a href="login.html" class="btn btn-secondary btn-sm">Explore ›</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
 <!-- ══════════════════════════════════════════════════════════
      ABOUT SECTION
@@ -325,6 +353,30 @@
     </div>
   </div>
 </section>
+
+<!-- ══════════════════════════════════════════════════════════
+     COLOUR PALETTE STRIP (from reference design)
+══════════════════════════════════════════════════════════ -->
+<div class="palette-strip-section" aria-label="Brand Colour Palette">
+  <div class="container palette-strip-inner">
+    <div class="palette-group">
+      <span class="palette-label">Our Colour Palette:</span>
+      <span class="palette-swatch"><span class="palette-dot" style="background:#073B2A;"></span> Deep Forest Green #073B2A</span>
+      <span class="palette-swatch"><span class="palette-dot" style="background:#0E8F59;"></span> Eco Green #0E8F59</span>
+      <span class="palette-swatch"><span class="palette-dot" style="background:#B7F36B;"></span> Lime Green #B7F36B</span>
+      <span class="palette-swatch"><span class="palette-dot" style="background:#F5F8F4;border-color:#ccc;"></span> Soft White #F5F8F4</span>
+      <span class="palette-swatch"><span class="palette-dot" style="background:#14231D;"></span> Midnight Green #14231D</span>
+      <span class="palette-swatch"><span class="palette-dot" style="background:#DCE8DF;"></span> Sage Mist #DCE8DF</span>
+    </div>
+    <div class="palette-group">
+      <span class="palette-label">Supporting:</span>
+      <span class="palette-swatch"><span class="palette-dot" style="background:#3B82F6;"></span> #3B82F6</span>
+      <span class="palette-swatch"><span class="palette-dot" style="background:#F59E0B;"></span> #F59E0B</span>
+      <span class="palette-swatch"><span class="palette-dot" style="background:#EF4444;"></span> #EF4444</span>
+      <span class="palette-swatch"><span class="palette-dot" style="background:#8B5CF6;"></span> #8B5CF6</span>
+    </div>
+  </div>
+</div>
 
 </main>
 
