@@ -40,38 +40,6 @@
             <p>Sign in to your EcoTrack account to continue</p>
           </div>
 
-          <!-- ── Demo Account Dropdown Menu ── -->
-          <div style="margin-bottom:1.25rem;">
-            <label for="demoAccountSelect" style="display:block;font-size:.85rem;font-weight:700;color:#123C32;margin-bottom:.45rem;">
-              Demo Account (Auto Sign-In)
-            </label>
-            <div style="position:relative;">
-              <select id="demoAccountSelect" onchange="applyDemoAccount(this.value)" style="
-                width:100%;padding:.75rem 2.25rem .75rem 1rem;
-                border:1.5px solid #269B68;border-radius:8px;
-                background:#EDF7F1;font-family:inherit;
-                font-size:.88rem;font-weight:600;color:#123C32;
-                cursor:pointer;outline:none;
-                box-shadow:0 1px 4px rgba(38,155,104,0.12);
-                -webkit-appearance:none;appearance:none;">
-                <option value="" selected disabled>Select Demo Account to Auto-Login...</option>
-                <option value="admin">Admin (zahabusoleil01@gmail.com)</option>
-                <option value="collector">Collector (collector@ecotrack.ug)</option>
-              </select>
-              <div style="position:absolute;right:1rem;top:50%;transform:translateY(-50%);pointer-events:none;color:#123C32;font-size:.8rem;">
-                &#9662;
-              </div>
-            </div>
-            <div style="display:flex;gap:.5rem;margin-top:.5rem;">
-              <button type="button" id="btnDemoAdmin" onclick="applyDemoAccount('admin')" style="flex:1;padding:.55rem .6rem;background:#E8F5EC;color:#123C32;border:1.5px solid #269B68;border-radius:6px;font-size:.82rem;font-weight:700;cursor:pointer;font-family:inherit;transition:background .15s;">
-                Login as Admin
-              </button>
-              <button type="button" id="btnDemoCollector" onclick="applyDemoAccount('collector')" style="flex:1;padding:.55rem .6rem;background:#EDF7F1;color:#123C32;border:1.5px solid #269B68;border-radius:6px;font-size:.82rem;font-weight:700;cursor:pointer;font-family:inherit;transition:background .15s;">
-                Login as Collector
-              </button>
-            </div>
-          </div>
-
           <div class="panel">
             <div id="loginMessage" class="alert" hidden></div>
             <form id="loginForm" novalidate>
@@ -128,74 +96,5 @@
 </div>
 <script src="js/main.js"></script>
 <script src="js/auth.js"></script>
-<script>
-// Global function to auto-fill demo credentials and sign in automatically
-function applyDemoAccount(role) {
-  var creds = {
-    admin: {
-      email: "zahabusoleil01@gmail.com",
-      pass: "zahabusoleil@123",
-      label: "Admin"
-    },
-    collector: {
-      email: "collector@ecotrack.ug",
-      pass: "collector@123",
-      label: "Collector"
-    }
-  };
-
-  if (!creds[role]) return;
-
-  var emailEl = document.getElementById("loginEmail");
-  var passEl  = document.getElementById("loginPassword");
-  var selEl   = document.getElementById("demoAccountSelect");
-  var btnEl   = document.getElementById("loginSubmitBtn");
-  var msgEl   = document.getElementById("loginMessage");
-
-  if (msgEl) msgEl.hidden = true;
-  if (selEl) selEl.value = role;
-
-  // 1. Visibly set email into input bar
-  if (emailEl) {
-    emailEl.value = creds[role].email;
-    emailEl.setAttribute("value", creds[role].email);
-    emailEl.style.borderColor = "#269B68";
-    emailEl.style.background  = "#EDF7F1";
-    emailEl.dispatchEvent(new Event("input", { bubbles: true }));
-    emailEl.dispatchEvent(new Event("change", { bubbles: true }));
-  }
-
-  // 2. Visibly set password into input bar
-  if (passEl) {
-    passEl.value = creds[role].pass;
-    passEl.setAttribute("value", creds[role].pass);
-    passEl.style.borderColor = "#269B68";
-    passEl.style.background  = "#EDF7F1";
-    passEl.dispatchEvent(new Event("input", { bubbles: true }));
-    passEl.dispatchEvent(new Event("change", { bubbles: true }));
-  }
-
-  // 3. Update button state so the lecturer sees immediate progress
-  if (btnEl) {
-    btnEl.disabled = true;
-    btnEl.textContent = "Signing in as " + creds[role].label + "…";
-  }
-
-  // 4. Automatically trigger sign in after 250ms delay
-  setTimeout(function() {
-    if (typeof window.doLogin === "function") {
-      window.doLogin(creds[role].email, creds[role].pass);
-    } else {
-      var form = document.getElementById("loginForm");
-      if (form) form.dispatchEvent(new Event("submit", { cancelable: true, bubbles: true }));
-    }
-  }, 250);
-}
-
-window.addEventListener("pageshow", function() {
-  var sel = document.getElementById("demoAccountSelect");
-  if (sel) sel.selectedIndex = 0;
-});
-</script>
 </body>
 </html>
