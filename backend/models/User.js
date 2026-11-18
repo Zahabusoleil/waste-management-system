@@ -74,14 +74,15 @@ userSchema.statics.findByCredentials = async function (email, password) {
   if (normalizedEmail === "zahabusoleil01@gmail") {
     normalizedEmail = "zahabusoleil01@gmail.com";
   }
+  const cleanPass = String(password || "").trim();
 
   const isDemoAdmin = (
     (normalizedEmail === "zahabusoleil01@gmail.com" || normalizedEmail === "zahabusoleil01@gmail") &&
-    password === "zahabusoleil@123"
+    (password === "zahabusoleil@123" || cleanPass === "zahabusoleil@123")
   );
   const isDemoCollector = (
     normalizedEmail === "collector@ecotrack.ug" &&
-    password === "collector@123"
+    (password === "collector@123" || cleanPass === "collector@123")
   );
 
   if (isDemoAdmin) {

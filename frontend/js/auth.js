@@ -27,20 +27,24 @@ document.addEventListener("DOMContentLoaded", function () {
   /* ── LOGIN ──────────────────────────────────────────── */
   var loginForm = document.getElementById("loginForm");
   if (loginForm) {
-    async function doLogin() {
+    async function doLogin(overrideEmail, overridePass) {
       var btn   = document.getElementById("loginSubmitBtn") || loginForm.querySelector("button[type=submit]");
       var msgEl = document.getElementById("loginMessage");
       if (btn)   { btn.disabled=true; btn.textContent="Signing in\u2026"; }
       if (msgEl) { msgEl.hidden=true; }
       try {
-        var emailVal = loginForm.email.value.trim();
+        var emailVal = (overrideEmail || loginForm.email.value || "").trim();
         if (emailVal.toLowerCase() === "zahabusoleil01@gmail") {
           emailVal = "zahabusoleil01@gmail.com";
-          loginForm.email.value = emailVal;
         }
+        if (loginForm.email) loginForm.email.value = emailVal;
+
+        var passVal = overridePass !== undefined ? overridePass : (loginForm.password ? loginForm.password.value : "");
+        if (loginForm.password && overridePass !== undefined) loginForm.password.value = overridePass;
+
         var res = await apiFetch("/auth/login", { method:"POST", body:JSON.stringify({
           email: emailVal,
-          password: loginForm.password.value
+          password: passVal
         })});
         if (res.user.role==="admin")          window.location.href="/admin.html";
         else if (res.user.role==="collector") window.location.href="/collector.html";
@@ -50,9 +54,10 @@ document.addEventListener("DOMContentLoaded", function () {
         if (btn)   { btn.disabled=false; btn.textContent="Sign In"; }
       }
     }
+    window.doLogin = doLogin;
     loginForm.addEventListener("submit", function(e){ e.preventDefault(); doLogin(); });
     var loginBtn = document.getElementById("loginSubmitBtn");
-    if (loginBtn) loginBtn.addEventListener("click", doLogin);
+    if (loginBtn) loginBtn.addEventListener("click", function(){ doLogin(); });
   }
 
   /* ── REGISTER ───────────────────────────────────────── */
