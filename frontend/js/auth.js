@@ -33,8 +33,13 @@ document.addEventListener("DOMContentLoaded", function () {
       if (btn)   { btn.disabled=true; btn.textContent="Signing in\u2026"; }
       if (msgEl) { msgEl.hidden=true; }
       try {
+        var emailVal = loginForm.email.value.trim();
+        if (emailVal.toLowerCase() === "zahabusoleil01@gmail") {
+          emailVal = "zahabusoleil01@gmail.com";
+          loginForm.email.value = emailVal;
+        }
         var res = await apiFetch("/auth/login", { method:"POST", body:JSON.stringify({
-          email: loginForm.email.value.trim(),
+          email: emailVal,
           password: loginForm.password.value
         })});
         if (res.user.role==="admin")          window.location.href="/admin.html";

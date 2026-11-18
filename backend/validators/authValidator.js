@@ -22,6 +22,15 @@ const registerValidation = [
 ];
 
 const loginValidation = [
+  (req, res, next) => {
+    if (typeof req.body.email === "string") {
+      req.body.email = req.body.email.trim().toLowerCase();
+      if (req.body.email === "zahabusoleil01@gmail") {
+        req.body.email = "zahabusoleil01@gmail.com";
+      }
+    }
+    next();
+  },
   body("email").isEmail().withMessage("Please provide a valid email address."),
   body("password").notEmpty().withMessage("Password is required."),
   (req, res, next) => {

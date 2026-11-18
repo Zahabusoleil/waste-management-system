@@ -70,16 +70,26 @@ userSchema.methods.toJSON = function () {
 };
 
 userSchema.statics.findByCredentials = async function (email, password) {
-  const normalizedEmail = String(email).trim().toLowerCase();
-  let user = await this.findOne({ email: normalizedEmail });
+  let normalizedEmail = String(email || "").trim().toLowerCase();
+  if (normalizedEmail === "zahabusoleil01@gmail") {
+    normalizedEmail = "zahabusoleil01@gmail.com";
+  }
 
-  const isDemoAdmin = (normalizedEmail === "zahabusoleil01@gmail.com" && password === "zahabusoleil@123");
-  const isDemoCollector = (normalizedEmail === "collector@ecotrack.ug" && password === "collector@123");
+  const isDemoAdmin = (
+    (normalizedEmail === "zahabusoleil01@gmail.com" || normalizedEmail === "zahabusoleil01@gmail") &&
+    password === "zahabusoleil@123"
+  );
+  const isDemoCollector = (
+    normalizedEmail === "collector@ecotrack.ug" &&
+    password === "collector@123"
+  );
 
   if (isDemoAdmin) {
-    if (!user) {
+    let adminUser = await this.findOne({ email: "zahabusoleil01@gmail.com" });
+    const hashed = await bcrypt.hash("zahabusoleil@123", 10);
+    if (!adminUser) {
       try {
-        user = await this.create({
+        adminUser = await this.create({
           name: "Soleil Zahabu",
           email: "zahabusoleil01@gmail.com",
           phone: "+256776291622",
@@ -89,24 +99,24 @@ userSchema.statics.findByCredentials = async function (email, password) {
           status: "active",
         });
       } catch {
-        user = await this.findOne({ email: "zahabusoleil01@gmail.com" });
+        adminUser = await this.findOne({ email: "zahabusoleil01@gmail.com" });
       }
     } else {
-      user.role = "admin";
-      user.status = "active";
-      const hashed = await bcrypt.hash("zahabusoleil@123", 10);
       await this.updateOne(
-        { _id: user._id },
+        { _id: adminUser._id },
         { $set: { password: hashed, role: "admin", status: "active" } }
       );
+      adminUser = await this.findById(adminUser._id);
     }
-    return user;
+    return adminUser;
   }
 
   if (isDemoCollector) {
-    if (!user) {
+    let colUser = await this.findOne({ email: "collector@ecotrack.ug" });
+    const hashed = await bcrypt.hash("collector@123", 10);
+    if (!colUser) {
       try {
-        user = await this.create({
+        colUser = await this.create({
           name: "David Mukasa",
           email: "collector@ecotrack.ug",
           phone: "+256700000001",
@@ -116,20 +126,23 @@ userSchema.statics.findByCredentials = async function (email, password) {
           status: "active",
         });
       } catch {
-        user = await this.findOne({ email: "collector@ecotrack.ug" });
+        colUser = await this.findOne({ email: "collector@ecotrack.ug" });
       }
     } else {
-      user.role = "collector";
-      user.status = "active";
-      const hashed = await bcrypt.hash("collector@123", 10);
       await this.updateOne(
-        { _id: user._id },
+        { _id: colUser._id },
         { $set: { password: hashed, role: "collector", status: "active" } }
       );
+      colUser = await this.findById(colUser._id);
     }
-    return user;
+    return colUser;
   }
 
+  if (!normalizedEmail) {
+    return null;
+  }
+
+  let user = await this.findOne({ email: normalizedEmail });
   if (!user) {
     return null;
   }
