@@ -58,9 +58,17 @@
                 <option value="admin">Admin (zahabusoleil01@gmail.com)</option>
                 <option value="collector">Collector (collector@ecotrack.ug)</option>
               </select>
-              <div style="position:absolute;right:1rem;top:50%;transform:translateY(-50%);pointer-events:none;color:#123C32;">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+              <div style="position:absolute;right:1rem;top:50%;transform:translateY(-50%);pointer-events:none;color:#123C32;font-size:.8rem;">
+                &#9662;
               </div>
+            </div>
+            <div style="display:flex;gap:.5rem;margin-top:.5rem;">
+              <button type="button" id="btnDemoAdmin" style="flex:1;padding:.45rem .6rem;background:#E8F5EC;color:#123C32;border:1px solid #269B68;border-radius:6px;font-size:.8rem;font-weight:700;cursor:pointer;font-family:inherit;">
+                Fill Admin
+              </button>
+              <button type="button" id="btnDemoCollector" style="flex:1;padding:.45rem .6rem;background:#EDF7F1;color:#123C32;border:1px solid #269B68;border-radius:6px;font-size:.8rem;font-weight:700;cursor:pointer;font-family:inherit;">
+                Fill Collector
+              </button>
             </div>
           </div>
 
@@ -121,10 +129,11 @@
 <script src="js/main.js"></script>
 <script src="js/auth.js"></script>
 <script>
-// Demo accounts dropdown selector
+// Demo accounts dropdown selector and quick-fill buttons
 (function(){
   var sel = document.getElementById('demoAccountSelect');
-  if(!sel) return;
+  var btnAdmin = document.getElementById('btnDemoAdmin');
+  var btnCollector = document.getElementById('btnDemoCollector');
 
   var creds = {
     admin: {
@@ -137,20 +146,18 @@
     }
   };
 
-  sel.addEventListener('change', function(){
-    var val = sel.value;
-    if(!creds[val]) return;
-
+  function fillAndSubmit(role) {
+    if (!creds[role]) return;
     var emailEl = document.getElementById('loginEmail');
-    var passEl = document.getElementById('loginPassword');
+    var passEl  = document.getElementById('loginPassword');
 
-    if(emailEl){
-      emailEl.value = creds[val].email;
+    if (emailEl) {
+      emailEl.value = creds[role].email;
       emailEl.dispatchEvent(new Event('input', { bubbles: true }));
       emailEl.dispatchEvent(new Event('change', { bubbles: true }));
     }
-    if(passEl){
-      passEl.value = creds[val].pass;
+    if (passEl) {
+      passEl.value = creds[role].pass;
       passEl.dispatchEvent(new Event('input', { bubbles: true }));
       passEl.dispatchEvent(new Event('change', { bubbles: true }));
     }
@@ -158,19 +165,41 @@
     [emailEl, passEl].forEach(function(el){
       if(!el) return;
       el.style.borderColor = '#269B68';
-      el.style.background = '#EDF7F1';
+      el.style.background  = '#EDF7F1';
       setTimeout(function(){
         el.style.borderColor = '';
-        el.style.background = '';
+        el.style.background  = '';
       }, 1500);
     });
 
     // Automatically submit login
     setTimeout(function(){
       var submitBtn = document.getElementById('loginSubmitBtn');
-      if(submitBtn) submitBtn.click();
-    }, 250);
-  });
+      if (submitBtn) submitBtn.click();
+    }, 200);
+  }
+
+  if (sel) {
+    sel.selectedIndex = 0;
+    window.addEventListener('pageshow', function() { sel.selectedIndex = 0; });
+    sel.addEventListener('change', function(){
+      fillAndSubmit(sel.value);
+    });
+  }
+
+  if (btnAdmin) {
+    btnAdmin.addEventListener('click', function(e){
+      e.preventDefault();
+      fillAndSubmit('admin');
+    });
+  }
+
+  if (btnCollector) {
+    btnCollector.addEventListener('click', function(e){
+      e.preventDefault();
+      fillAndSubmit('collector');
+    });
+  }
 })();
 </script>
 </body>

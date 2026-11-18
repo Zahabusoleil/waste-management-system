@@ -245,8 +245,7 @@ document.addEventListener("DOMContentLoaded", async function () {
                "class='btn btn-secondary btn-sm' style='text-decoration:none;'>" +
                "WhatsApp Web</a>" +
           "</div>" +
-        "</div>");
-      }
+        "</div>";
       await loadAll();
     }catch(err){
       if(rm){ rm.className="alert alert-error"; rm.textContent=err.message; rm.hidden=false; }
