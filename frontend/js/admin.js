@@ -96,15 +96,15 @@ document.addEventListener("DOMContentLoaded", async function () {
     tb.innerHTML=list.map(function(u){
       var sb=formatStatusBadge(u.status);
       var rb="<span style=\"display:inline-flex;padding:.25rem .6rem;border-radius:999px;font-size:.75rem;font-weight:700;background:#ede9fe;color:#5b21b6;\">"+escapeHTML(u.role)+"</span>";
-      var editBtn="<button class=\"btn btn-sm btn-ghost\" data-uid=\""+escapeHTML(u._id)+"\" data-action=\"edit\" title=\"Edit user\">" +
+      var editBtn="<button class=\"btn btn-sm btn-action-edit\" data-uid=\""+escapeHTML(u._id)+"\" data-action=\"edit\" title=\"Edit user\">" +
         "<svg class=\"icon icon-sm\"><use href=\"/images/icons.svg#icon-edit\"></use></svg></button>";
-      var delBtn=u.role==="admin"?"":"<button class=\"btn btn-sm btn-danger\" data-uid=\""+escapeHTML(u._id)+"\" data-action=\"delete\" title=\"Delete user\">" +
-        "<svg class=\"icon icon-sm\"><use href=\"/images/icons.svg#icon-trash\"></use></svg></button>";
-      var resetBtn=u.role==="admin"?"":"<button class=\"btn btn-sm btn-warning\" data-uid=\""+escapeHTML(u._id)+"\" data-action=\"reset\" title=\"Reset password\">" +
+      var resetBtn=u.role==="admin"?"":"<button class=\"btn btn-sm btn-action-reset\" data-uid=\""+escapeHTML(u._id)+"\" data-action=\"reset\" title=\"Reset password\">" +
         "<svg class=\"icon icon-sm\"><use href=\"/images/icons.svg#icon-lock\"></use></svg></button>";
       var toggleBtn=u.role==="admin"?"":
-        "<button class=\"btn btn-sm "+(u.status==="active"?"btn-warning":"btn-primary")+"\" data-uid=\""+escapeHTML(u._id)+"\" data-action=\"toggle\" data-ust=\""+(u.status==="active"?"inactive":"active")+"\">" +
+        "<button class=\"btn btn-sm "+(u.status==="active"?"btn-action-deactivate":"btn-action-activate")+"\" data-uid=\""+escapeHTML(u._id)+"\" data-action=\"toggle\" data-ust=\""+(u.status==="active"?"inactive":"active")+"\">" +
         (u.status==="active"?"Deactivate":"Activate")+"</button>";
+      var delBtn=u.role==="admin"?"":"<button class=\"btn btn-sm btn-action-delete\" data-uid=\""+escapeHTML(u._id)+"\" data-action=\"delete\" title=\"Delete user\">" +
+        "<svg class=\"icon icon-sm\"><use href=\"/images/icons.svg#icon-trash\"></use></svg></button>";
       return "<tr data-user-row=\""+escapeHTML(u._id)+"\">" +
         "<td><strong>"+escapeHTML(u.name)+"</strong></td>" +
         "<td>"+escapeHTML(u.email)+"</td>" +

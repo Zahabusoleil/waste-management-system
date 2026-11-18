@@ -391,6 +391,8 @@ footer{background:var(--primary);color:rgba(255,255,255,0.85);padding:3.5rem 0 1
 .btn-primary:hover{background:#1f8259;box-shadow:0 4px 16px rgba(38,155,104,0.3);}
 .btn-secondary{background:#E8F5EC;color:var(--text);}
 .btn-secondary:hover{background:#ccddd0;}
+.btn-warning{background:#FEF3C7;color:#92400E;border:1.5px solid #FDE68A;}
+.btn-warning:hover{background:#FDE68A;color:#78350F;}
 .btn-ghost{background:transparent;color:var(--text);border:1.5px solid var(--border);}
 .btn-ghost:hover{background:var(--bg);}
 .btn-danger{background:var(--error);color:#fff;}
@@ -398,6 +400,94 @@ footer{background:var(--primary);color:rgba(255,255,255,0.85);padding:3.5rem 0 1
 .btn-sm{padding:.4rem .9rem;font-size:.82rem;border-radius:6px;}
 .btn-lg{padding:.85rem 2rem;font-size:1.05rem;border-radius:10px;}
 .btn-block{width:100%;display:flex;}
+
+/* Table and User Action Buttons */
+.user-actions, .table-actions{
+  display:inline-flex;
+  align-items:center;
+  gap:.35rem;
+  flex-wrap:nowrap;
+  white-space:nowrap;
+}
+.user-actions .btn{
+  padding:0 .55rem;
+  height:32px;
+  min-width:32px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:6px;
+  font-size:.78rem;
+  font-weight:700;
+  transition:all .15s ease;
+  box-shadow:0 1px 2px rgba(0,0,0,0.04);
+}
+.user-actions .btn svg.icon{
+  width:15px;
+  height:15px;
+}
+
+/* Edit action: Cool Blue */
+.btn-action-edit{
+  background:#EFF6FF !important;
+  color:#1D4ED8 !important;
+  border:1.5px solid #BFDBFE !important;
+}
+.btn-action-edit:hover{
+  background:#DBEAFE !important;
+  color:#1E40AF !important;
+  border-color:#93C5FD !important;
+}
+
+/* Reset Password action: Warm Gold / Amber */
+.btn-action-reset{
+  background:#FEF3C7 !important;
+  color:#B45309 !important;
+  border:1.5px solid #FDE68A !important;
+}
+.btn-action-reset:hover{
+  background:#FDE68A !important;
+  color:#78350F !important;
+  border-color:#FCD34D !important;
+}
+
+/* Deactivate action: Warm Tangerine / Orange */
+.btn-action-deactivate{
+  background:#FFF7ED !important;
+  color:#C2410C !important;
+  border:1.5px solid #FED7AA !important;
+  padding:0 .75rem !important;
+}
+.btn-action-deactivate:hover{
+  background:#FFEDD5 !important;
+  color:#9A3412 !important;
+  border-color:#FDBA74 !important;
+}
+
+/* Activate action: Clean Emerald Green */
+.btn-action-activate{
+  background:#ECFDF5 !important;
+  color:#047857 !important;
+  border:1.5px solid #A7F3D0 !important;
+  padding:0 .75rem !important;
+}
+.btn-action-activate:hover{
+  background:#D1FAE5 !important;
+  color:#065F46 !important;
+  border-color:#6EE7B7 !important;
+}
+
+/* Delete action: Soft Rose / Crimson */
+.btn-action-delete{
+  background:#FEE2E2 !important;
+  color:#DC2626 !important;
+  border:1.5px solid #FECACA !important;
+}
+.btn-action-delete:hover{
+  background:#DC2626 !important;
+  color:#FFFFFF !important;
+  border-color:#DC2626 !important;
+}
 .btn-outline-white{
   display:inline-flex;align-items:center;gap:.4rem;
   padding:.6rem 1.4rem;border-radius:8px;font-size:.9rem;font-weight:600;
@@ -597,6 +687,7 @@ td{
   padding:.8rem 1rem;border-bottom:1px solid var(--border);
   color:var(--text);vertical-align:middle;
 }
+table td:last-child, table th:last-child{white-space:nowrap;}
 tr:last-child td{border-bottom:none;}
 tbody tr:hover{background:#FAFCFB;}
 .empty-state{
