@@ -61,7 +61,7 @@ document.addEventListener("DOMContentLoaded", async function () {
       if(me.user.role!=="admin"){ window.location.href="/login.html"; return; }
       var ne=document.getElementById("adminName"), ae=document.getElementById("adminAvatar");
       if(ne)ne.textContent=me.user.name;
-      if(ae)ae.textContent=me.user.name.charAt(0).toUpperCase();
+      if(ae && !ae.querySelector("img"))ae.textContent=me.user.name.charAt(0).toUpperCase();
       renderStats(stats.stats);
       allUsers=us.users||[]; allReports=rep.reports||[]; allCollections=col.collections||[];
       renderUsers(); renderReports(); renderCollections();
