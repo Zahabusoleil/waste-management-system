@@ -4,151 +4,230 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
 <title>Admin Dashboard | EcoTrack</title>
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"><link rel="stylesheet" href="css/styles.css"/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css"/>
 </head>
 <body>
+
 <div id="sidebarOverlay" class="sidebar-overlay"></div>
+
 <aside class="dash-sidebar" id="dashSidebar">
-  <div class="dash-sidebar-logo"><img src="images/logo.svg" alt="EcoTrack" width="30" height="30"/> EcoTrack</div>
+  <div class="dash-sidebar-logo">
+    <img src="images/logo.svg" alt="EcoTrack" width="30" height="30"/> EcoTrack
+  </div>
   <nav class="dash-nav" aria-label="Admin navigation">
-<div class="dash-nav-section">Main</div>
-<a href="#" data-section="overview"><div class="nav-icon"><svg class="icon" aria-hidden="true" focusable="false"><use href="/images/icons.svg#icon-dashboard"></use></svg></div>Overview</a>
-<div class="dash-nav-section">Management</div>
-<a href="#" data-section="users"><div class="nav-icon"><svg class="icon" aria-hidden="true" focusable="false"><use href="/images/icons.svg#icon-users"></use></svg></div>Users</a>
-<a href="#" data-section="reports"><div class="nav-icon"><svg class="icon" aria-hidden="true" focusable="false"><use href="/images/icons.svg#icon-reports"></use></svg></div>Reports</a>
-<a href="#" data-section="collections"><div class="nav-icon"><svg class="icon" aria-hidden="true" focusable="false"><use href="/images/icons.svg#icon-truck"></use></svg></div>Collections</a>
-<div class="dash-nav-section">Account</div>
-<a href="#" data-section="create-collector"><div class="nav-icon"><svg class="icon" aria-hidden="true" focusable="false"><use href="/images/icons.svg#icon-plus"></use></svg></div>Add Collector</a>
+    <div class="dash-nav-section">Main</div>
+    <a href="#" data-section="overview" class="active">
+      <div class="nav-icon">
+        <svg class="icon" aria-hidden="true" focusable="false"><use href="/images/icons.svg#icon-dashboard"></use></svg>
+      </div>Dashboard
+    </a>
+    <div class="dash-nav-section">Management</div>
+    <a href="#" data-section="users">
+      <div class="nav-icon">
+        <svg class="icon" aria-hidden="true" focusable="false"><use href="/images/icons.svg#icon-users"></use></svg>
+      </div>Manage Users
+    </a>
+    <a href="#" data-section="reports">
+      <div class="nav-icon">
+        <svg class="icon" aria-hidden="true" focusable="false"><use href="/images/icons.svg#icon-reports"></use></svg>
+      </div>Reports
+    </a>
+    <a href="#" data-section="collections">
+      <div class="nav-icon">
+        <svg class="icon" aria-hidden="true" focusable="false"><use href="/images/icons.svg#icon-truck"></use></svg>
+      </div>Collections
+    </a>
+    <div class="dash-nav-section">Account</div>
+    <a href="#" data-section="create-collector">
+      <div class="nav-icon">
+        <svg class="icon" aria-hidden="true" focusable="false"><use href="/images/icons.svg#icon-plus"></use></svg>
+      </div>Add Collector
+    </a>
   </nav>
   <div class="dash-sidebar-footer">
     <div class="user-chip">
-      <div class="user-chip-avatar" id="adminAvatar">A</div>
+      <div class="user-chip-avatar" id="adminAvatar">
+        <img src="images/founder.jpg" alt="Admin" onerror="this.style.display='none';this.parentElement.textContent='A'"/>
+      </div>
       <div class="user-chip-info">
         <strong id="adminName">Admin</strong>
-        <span>Admin Account</span>
+        <span>Administrator</span>
       </div>
     </div>
-    <button class="btn-logout-sidebar" data-logout><svg class="icon icon-sm" aria-hidden="true" focusable="false"><use href="/images/icons.svg#icon-logout"></use></svg> Sign Out</button>
+    <button class="btn-logout-sidebar" data-logout>
+      <svg class="icon icon-sm" aria-hidden="true" focusable="false"><use href="/images/icons.svg#icon-logout"></use></svg> Sign Out
+    </button>
   </div>
 </aside>
+
 <div class="dash-main">
-<header class="dash-topbar">
-  <div style="display:flex;align-items:center;gap:1rem;">
-    <button class="sidebar-toggle" id="sidebarToggle" aria-label="Toggle navigation"><svg class="icon icon-lg" aria-hidden="true" focusable="false"><use href="/images/icons.svg#icon-menu"></use></svg></button>
-    <div>
-      <div class="dash-page-title" id="topbarTitle">Dashboard</div>
-      <div class="dash-breadcrumb">EcoTrack / Admin</div>
-    </div>
-  </div>
-  <div class="topbar-actions">
-    <div id="adminMessage" class="alert" hidden style="margin:0;padding:.5rem 1rem;font-size:.82rem;max-width:360px;"></div>
-  </div>
-</header>
-<div class="dash-content">
-
-<section id="sec-overview" class="dash-section">
-  <div class="stats-grid" id="statsGrid">
-    <div class="stat-box"><h4><svg class="icon icon-sm" aria-hidden="true" focusable="false"><use href="/images/icons.svg#icon-users"></use></svg> Residents</h4><h3>—</h3></div>
-    <div class="stat-box"><h4><svg class="icon icon-sm" aria-hidden="true" focusable="false"><use href="/images/icons.svg#icon-truck"></use></svg> Collectors</h4><h3>—</h3></div>
-    <div class="stat-box"><h4><svg class="icon icon-sm" aria-hidden="true" focusable="false"><use href="/images/icons.svg#icon-reports"></use></svg> Reports</h4><h3>—</h3></div>
-    <div class="stat-box"><h4><svg class="icon icon-sm" aria-hidden="true" focusable="false"><use href="/images/icons.svg#icon-chart"></use></svg> Pending</h4><h3>—</h3></div>
-    <div class="stat-box"><h4><svg class="icon icon-sm" aria-hidden="true" focusable="false"><use href="/images/icons.svg#icon-send"></use></svg> Assigned</h4><h3>—</h3></div>
-    <div class="stat-box"><h4><svg class="icon icon-sm" aria-hidden="true" focusable="false"><use href="/images/icons.svg#icon-check"></use></svg> Completed</h4><h3>—</h3></div>
-  </div>
-</section>
-
-<section id="sec-users" class="dash-section" hidden>
-  <div class="card">
-    <div class="card-header">
-      <h2><div class="card-icon"><svg class="icon" aria-hidden="true" focusable="false"><use href="/images/icons.svg#icon-users"></use></svg></div>User Management</h2>
-      <div style="display:flex;gap:.75rem;align-items:center;flex-wrap:wrap;">
-        <select id="userRoleFilter" style="margin:0;padding:.4rem .75rem;font-size:.82rem;border-radius:6px;border:1.5px solid var(--border);background:var(--surface);">
-          <option value="all">All roles</option>
-          <option value="resident">Residents</option>
-          <option value="collector">Collectors</option>
-        </select>
-        <div class="topbar-search">
-          <svg class="icon" aria-hidden="true" focusable="false"><use href="/images/icons.svg#icon-search"></use></svg>
-          <input id="userSearch" type="search" placeholder="Search name or email"/>
-        </div>
+  <header class="dash-topbar">
+    <div style="display:flex;align-items:center;gap:1rem;">
+      <button class="sidebar-toggle" id="sidebarToggle" aria-label="Toggle navigation">
+        <svg class="icon icon-lg" aria-hidden="true" focusable="false"><use href="/images/icons.svg#icon-menu"></use></svg>
+      </button>
+      <div>
+        <div class="dash-page-title" id="topbarTitle">Dashboard</div>
+        <div class="dash-breadcrumb">EcoTrack / Admin</div>
       </div>
     </div>
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>Name</th><th>Email</th><th>Phone</th><th>Role</th><th>Status</th><th>Joined</th><th>Actions</th></tr></thead>
-        <tbody id="usersTable"></tbody>
-      </table>
+    <div class="topbar-actions">
+      <div id="adminMessage" class="alert" hidden style="margin:0;padding:.5rem 1rem;font-size:.82rem;max-width:360px;"></div>
     </div>
-  </div>
-</section>
+  </header>
 
-<section id="sec-reports" class="dash-section" hidden>
-  <div class="card">
-    <div class="card-header">
-      <h2><div class="card-icon"><svg class="icon" aria-hidden="true" focusable="false"><use href="/images/icons.svg#icon-reports"></use></svg></div>Waste Reports</h2>
-      <div style="display:flex;gap:.75rem;align-items:center;flex-wrap:wrap;">
-        <select id="reportStatusFilter" style="margin:0;padding:.4rem .75rem;font-size:.82rem;border-radius:6px;border:1.5px solid var(--border);background:var(--surface);">
-          <option value="all">All statuses</option>
-          <option>Pending</option><option>Approved</option><option>Assigned</option>
-          <option>In Progress</option><option>Completed</option><option>Rejected</option>
-        </select>
-        <div class="topbar-search">
-          <svg class="icon" aria-hidden="true" focusable="false"><use href="/images/icons.svg#icon-search"></use></svg>
-          <input id="reportSearch" type="search" placeholder="Search reports"/>
+  <div class="dash-content">
+
+    <!-- OVERVIEW SECTION -->
+    <section id="sec-overview" class="dash-section">
+      <div class="dash-welcome">
+        <div class="dash-welcome-text">
+          <h2>Admin Dashboard 👋</h2>
+          <p>Overview of waste management activities across all communities</p>
+        </div>
+        <div class="dash-welcome-emoji">⚙️</div>
+      </div>
+
+      <div class="stats-grid" id="statsGrid">
+        <div class="stat-box">
+          <h4><svg class="icon icon-sm" aria-hidden="true" focusable="false"><use href="/images/icons.svg#icon-users"></use></svg> Residents</h4>
+          <h3>—</h3>
+        </div>
+        <div class="stat-box">
+          <h4><svg class="icon icon-sm" aria-hidden="true" focusable="false"><use href="/images/icons.svg#icon-truck"></use></svg> Collectors</h4>
+          <h3>—</h3>
+        </div>
+        <div class="stat-box">
+          <h4><svg class="icon icon-sm" aria-hidden="true" focusable="false"><use href="/images/icons.svg#icon-reports"></use></svg> Reports</h4>
+          <h3>—</h3>
+        </div>
+        <div class="stat-box">
+          <h4><svg class="icon icon-sm" aria-hidden="true" focusable="false"><use href="/images/icons.svg#icon-chart"></use></svg> Pending</h4>
+          <h3>—</h3>
+        </div>
+        <div class="stat-box">
+          <h4><svg class="icon icon-sm" aria-hidden="true" focusable="false"><use href="/images/icons.svg#icon-send"></use></svg> Assigned</h4>
+          <h3>—</h3>
+        </div>
+        <div class="stat-box">
+          <h4><svg class="icon icon-sm" aria-hidden="true" focusable="false"><use href="/images/icons.svg#icon-check"></use></svg> Completed</h4>
+          <h3>—</h3>
         </div>
       </div>
-    </div>
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>Category</th><th>Location</th><th>Resident</th><th>Photo</th><th>Status</th><th>Assign Collector</th><th>Actions</th></tr></thead>
-        <tbody id="reportsTable"></tbody>
-      </table>
-    </div>
-  </div>
-</section>
+    </section>
 
-<section id="sec-collections" class="dash-section" hidden>
-  <div class="card">
-    <div class="card-header">
-      <h2><div class="card-icon"><svg class="icon" aria-hidden="true" focusable="false"><use href="/images/icons.svg#icon-truck"></use></svg></div>Collection Tasks</h2>
-    </div>
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>Category</th><th>Location</th><th>Collector</th><th>Scheduled</th><th>Status</th><th>Notes</th></tr></thead>
-        <tbody id="collectionsTable"></tbody>
-      </table>
-    </div>
-  </div>
-</section>
-
-<section id="sec-create-collector" class="dash-section" hidden>
-  <div class="card" style="max-width:660px;">
-    <div class="card-header">
-      <h2><div class="card-icon"><svg class="icon" aria-hidden="true" focusable="false"><use href="/images/icons.svg#icon-plus"></use></svg></div>Create Collector Account</h2>
-    </div>
-    <form id="collectorForm">
-      <div class="form-grid">
-        <div class="form-group"><label for="collectorName">Full name</label><input id="collectorName" name="name" required minlength="2" placeholder="Collector full name"/></div>
-        <div class="form-group"><label for="collectorEmail">Email address</label><input id="collectorEmail" name="email" type="email" required placeholder="collector@example.com"/></div>
-        <div class="form-group"><label for="collectorPhone">Phone number</label><input id="collectorPhone" name="phone" type="tel" required placeholder="+256 700 000 000"/></div>
-        <div class="form-group"><label for="collectorLocation">Location / Zone</label><input id="collectorLocation" name="location" required placeholder="e.g. Kampala North"/></div>
-        <div class="form-group" style="grid-column:1/-1;">
-          <label for="collectorPassword">Temporary password</label>
-          <div class="password-wrap">
-            <input id="collectorPassword" name="password" type="password" minlength="8" required placeholder="Minimum 8 characters"/>
-            <button type="button" class="toggle-pass" data-target="collectorPassword"><svg class="icon icon-md" aria-hidden="true" focusable="false"><use href="/images/icons.svg#icon-eye"></use></svg></button>
+    <!-- USERS SECTION -->
+    <section id="sec-users" class="dash-section" hidden>
+      <div class="card">
+        <div class="card-header">
+          <h2>
+            <div class="card-icon"><svg class="icon" aria-hidden="true" focusable="false"><use href="/images/icons.svg#icon-users"></use></svg></div>
+            User Management
+          </h2>
+          <div style="display:flex;gap:.75rem;align-items:center;flex-wrap:wrap;">
+            <select id="userRoleFilter" style="margin:0;padding:.4rem .75rem;font-size:.82rem;border-radius:6px;border:1.5px solid var(--border);background:var(--surface);">
+              <option value="all">All roles</option>
+              <option value="resident">Residents</option>
+              <option value="collector">Collectors</option>
+            </select>
+            <div class="topbar-search">
+              <svg class="icon" aria-hidden="true" focusable="false"><use href="/images/icons.svg#icon-search"></use></svg>
+              <input id="userSearch" type="search" placeholder="Search name or email"/>
+            </div>
           </div>
-          <span class="form-hint">Share this password securely with the collector and ask them to change it after first login.</span>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Name</th><th>Email</th><th>Phone</th><th>Role</th><th>Status</th><th>Joined</th><th>Actions</th></tr></thead>
+            <tbody id="usersTable"></tbody>
+          </table>
         </div>
       </div>
-      <button type="submit" class="btn btn-primary">Create Collector Account</button>
-    </form>
+    </section>
+
+    <!-- REPORTS SECTION -->
+    <section id="sec-reports" class="dash-section" hidden>
+      <div class="card">
+        <div class="card-header">
+          <h2>
+            <div class="card-icon"><svg class="icon" aria-hidden="true" focusable="false"><use href="/images/icons.svg#icon-reports"></use></svg></div>
+            Waste Reports
+          </h2>
+          <div style="display:flex;gap:.75rem;align-items:center;flex-wrap:wrap;">
+            <select id="reportStatusFilter" style="margin:0;padding:.4rem .75rem;font-size:.82rem;border-radius:6px;border:1.5px solid var(--border);background:var(--surface);">
+              <option value="all">All statuses</option>
+              <option>Pending</option><option>Approved</option><option>Assigned</option>
+              <option>In Progress</option><option>Completed</option><option>Rejected</option>
+            </select>
+            <div class="topbar-search">
+              <svg class="icon" aria-hidden="true" focusable="false"><use href="/images/icons.svg#icon-search"></use></svg>
+              <input id="reportSearch" type="search" placeholder="Search reports"/>
+            </div>
+          </div>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Category</th><th>Location</th><th>Resident</th><th>Photo</th><th>Status</th><th>Assign Collector</th><th>Actions</th></tr></thead>
+            <tbody id="reportsTable"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- COLLECTIONS SECTION -->
+    <section id="sec-collections" class="dash-section" hidden>
+      <div class="card">
+        <div class="card-header">
+          <h2>
+            <div class="card-icon"><svg class="icon" aria-hidden="true" focusable="false"><use href="/images/icons.svg#icon-truck"></use></svg></div>
+            Collection Tasks
+          </h2>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Category</th><th>Location</th><th>Collector</th><th>Scheduled</th><th>Status</th><th>Notes</th></tr></thead>
+            <tbody id="collectionsTable"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- CREATE COLLECTOR SECTION -->
+    <section id="sec-create-collector" class="dash-section" hidden>
+      <div class="card" style="max-width:660px;">
+        <div class="card-header">
+          <h2>
+            <div class="card-icon"><svg class="icon" aria-hidden="true" focusable="false"><use href="/images/icons.svg#icon-plus"></use></svg></div>
+            Create Collector Account
+          </h2>
+        </div>
+        <form id="collectorForm">
+          <div class="form-grid">
+            <div class="form-group"><label for="collectorName">Full name</label><input id="collectorName" name="name" required minlength="2" placeholder="Collector full name"/></div>
+            <div class="form-group"><label for="collectorEmail">Email address</label><input id="collectorEmail" name="email" type="email" required placeholder="collector@example.com"/></div>
+            <div class="form-group"><label for="collectorPhone">Phone number</label><input id="collectorPhone" name="phone" type="tel" required placeholder="+256 700 000 000"/></div>
+            <div class="form-group"><label for="collectorLocation">Location / Zone</label><input id="collectorLocation" name="location" required placeholder="e.g. Kampala North"/></div>
+            <div class="form-group" style="grid-column:1/-1;">
+              <label for="collectorPassword">Temporary password</label>
+              <div class="password-wrap">
+                <input id="collectorPassword" name="password" type="password" minlength="8" required placeholder="Minimum 8 characters"/>
+                <button type="button" class="toggle-pass" data-target="collectorPassword"><svg class="icon icon-md" aria-hidden="true" focusable="false"><use href="/images/icons.svg#icon-eye"></use></svg></button>
+              </div>
+              <span class="form-hint">Share this password securely with the collector and ask them to change it after first login.</span>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary">Create Collector Account</button>
+        </form>
+      </div>
+    </section>
+
   </div>
-</section>
-
-</div>
 </div>
 
+<!-- EDIT USER DIALOG -->
 <dialog id="editUserDialog" aria-labelledby="editUserTitle">
   <div class="modal-header">
     <h2 id="editUserTitle">Edit User</h2>
@@ -167,6 +246,7 @@
   </form>
 </dialog>
 
+<!-- RESET PASSWORD DIALOG -->
 <dialog id="resetPassDialog" aria-labelledby="resetPassTitle">
   <div class="modal-header">
     <h2 id="resetPassTitle">Reset User Password</h2>

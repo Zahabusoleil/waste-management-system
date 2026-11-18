@@ -4,69 +4,198 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
 <title>EcoTrack | Waste Management &amp; Collection Tracking</title>
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/styles.css"/>
 </head>
 <body>
+
+<!-- ══════════════════════════════════════════════════════════
+     HEADER / NAVIGATION
+══════════════════════════════════════════════════════════ -->
 <header class="site-header">
   <div class="container navbar">
     <a href="/" class="brand" aria-label="EcoTrack home">
       <span class="brand-logo"><img src="images/logo.svg" alt="" width="32" height="32" aria-hidden="true"/></span>EcoTrack
     </a>
-    <nav class="nav-links" aria-label="Main navigation">
-      <a href="/">Home</a>
+    <nav class="nav-links" id="mainNav" aria-label="Main navigation">
+      <a href="/" class="nav-active">Home</a>
       <a href="about.html">About</a>
       <a href="#services">Services</a>
       <a href="#how-it-works">How It Works</a>
       <a href="#contact">Contact</a>
-      <a href="login.html">Login</a>
-      <a href="register.html" class="btn btn-primary btn-sm">Register</a>
+      <a href="login.html" class="btn-login" style="display:none" aria-hidden="true">Login mobile</a>
+      <a href="register.html" class="btn btn-primary btn-sm btn-register-nav" style="display:none" aria-hidden="true">Register mobile</a>
     </nav>
+    <div class="nav-actions">
+      <a href="login.html" class="btn-login">Login</a>
+      <a href="register.html" class="btn-register">Register</a>
+    </div>
+    <button id="mobileMenuToggle" aria-label="Toggle navigation" aria-expanded="false">&#9776;</button>
   </div>
 </header>
+
 <main>
 
+<!-- ══════════════════════════════════════════════════════════
+     HERO SECTION
+══════════════════════════════════════════════════════════ -->
 <section class="site-hero" aria-labelledby="heroHeading">
-  <canvas id="ecoCanvas" class="hero-bg-canvas" aria-hidden="true"></canvas>
   <div class="hero-content">
-    <div>
-      <div class="hero-eyebrow"><span aria-hidden="true"></span>Waste Management Platform</div>
-      <h1 id="heroHeading" class="hero-title">Building a <mark>Cleaner</mark> Environment Through Smarter Waste Management</h1>
-      <p class="hero-subtitle">Our platform makes it easier for residents to report waste problems, request collection services, and monitor waste collection activities in real time.</p>
+    <div class="hero-left">
+      <div class="hero-eyebrow">🌿 Smart Waste Management</div>
+      <h1 id="heroHeading" class="hero-title">Building a <span class="eco">Cleaner</span> Future Through Smarter Waste Management.</h1>
+      <p class="hero-subtitle">Empowering communities with intelligent waste reporting, efficient collection management and real-time tracking.</p>
       <div class="hero-cta">
-        <a href="login.html" class="btn btn-primary btn-lg" id="reportWasteLink">Report Waste</a>
-        <a href="about.html" class="btn-outline-white">Learn More</a>
+        <a href="login.html" class="btn btn-primary btn-lg" id="reportWasteLink">🗑️ Report Waste</a>
+        <a href="about.html" class="btn-outline-white">Learn More ›</a>
       </div>
       <div class="hero-stats">
-        <div class="hero-stat"><strong>3</strong><span>User Roles</span></div>
-        <div class="hero-stat"><strong>Live</strong><span>Real-time Tracking</span></div>
-        <div class="hero-stat"><strong>Secure</strong><span>End-to-end Auth</span></div>
+        <div class="hero-stat">
+          <strong id="statTotalReportsHero">—</strong>
+          <span>Waste Reports</span>
+        </div>
+        <div class="hero-stat">
+          <strong id="statCompletedHero">—</strong>
+          <span>Collections</span>
+        </div>
+        <div class="hero-stat">
+          <strong id="statActiveUsersHero">—</strong>
+          <span>Active Users</span>
+        </div>
+        <div class="hero-stat">
+          <strong>25+</strong>
+          <span>Communities</span>
+        </div>
       </div>
     </div>
-    <div class="hero-visual" aria-hidden="true">
-      <div class="hero-3d-container">
-        <canvas id="globe3d" width="460" height="460"></canvas>
+    <div class="hero-right" aria-hidden="true">
+      <div class="hero-bg-blob"></div>
+      <div class="hero-bg-blob2"></div>
+      <div class="hero-right-inner">
+        <span class="hero-truck-emoji">🚛</span>
+        <div style="font-size:4rem;margin-top:-.5rem;">♻️</div>
+        <div class="hero-truck-label">EcoTrack Fleet</div>
+        <div class="hero-truck-sub">Clean communities, smarter collections</div>
       </div>
     </div>
   </div>
   <p id="homeMessage" role="alert" hidden style="position:relative;z-index:2;width:min(1180px,calc(100% - 2rem));margin:0 auto;padding:.85rem 1rem;border-radius:12px;"></p>
 </section>
 
-<section id="about" class="section" style="background:var(--surface);">
+<!-- ══════════════════════════════════════════════════════════
+     STATS ROW (connected to real data via home.js)
+══════════════════════════════════════════════════════════ -->
+<div class="stats-row">
+  <div class="container">
+    <div class="stats-row-grid">
+      <div class="stat-card">
+        <div class="stat-card-icon">📋</div>
+        <div class="stat-card-info">
+          <span class="stat-card-value" id="statTotalReports">—</span>
+          <span class="stat-card-label">Total Waste Reports</span>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-card-icon">✅</div>
+        <div class="stat-card-info">
+          <span class="stat-card-value" id="statCompleted">—</span>
+          <span class="stat-card-label">Completed Collections</span>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-card-icon">👥</div>
+        <div class="stat-card-info">
+          <span class="stat-card-value" id="statActiveUsers">—</span>
+          <span class="stat-card-label">Active Users</span>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-card-icon">🌍</div>
+        <div class="stat-card-info">
+          <span class="stat-card-value" id="statCommunities">25+</span>
+          <span class="stat-card-label">Communities Served</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════
+     FEATURES ROW
+══════════════════════════════════════════════════════════ -->
+<div class="features-section">
+  <div class="container">
+    <div class="features-row">
+      <div class="feature-item">
+        <div class="feature-icon">📋</div>
+        <div class="feature-text">
+          <h3>Report Waste</h3>
+          <p>Easily report waste in your community</p>
+        </div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon">🚛</div>
+        <div class="feature-text">
+          <h3>Track Collection</h3>
+          <p>Follow the collection process in real-time</p>
+        </div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon">♻️</div>
+        <div class="feature-text">
+          <h3>Promote Recycling</h3>
+          <p>Support a cleaner, greener Uganda</p>
+        </div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon">🌍</div>
+        <div class="feature-text">
+          <h3>Build a Green Future</h3>
+          <p>Together for a sustainable environment</p>
+        </div>
+      </div>
+      <div class="promo-panel">
+        <div class="promo-globe">🌐</div>
+        <h3>Join EcoTrack Today</h3>
+        <p>Be part of the solution for a cleaner and healthier environment</p>
+        <a href="register.html" class="btn btn-primary btn-sm">Get Started →</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════
+     ABOUT SECTION
+══════════════════════════════════════════════════════════ -->
+<section id="about" class="section" style="background:#fff;">
   <div class="container">
     <div class="section-header">
       <div class="section-label">About EcoTrack</div>
       <h2 class="section-title">Solving Waste Management Through Technology</h2>
-      <p class="section-subtitle">EcoTrack addresses the challenge of unmanaged waste in urban and peri-urban communities by creating a transparent workflow connecting residents, administrators, and waste collectors — from report submission to verified completion.</p>
+      <p class="section-subtitle">EcoTrack creates a transparent workflow connecting residents, administrators, and waste collectors — from report submission to verified completion.</p>
     </div>
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:1rem;">
-      <div class="card"><strong style="display:block;font-size:1.1rem;font-weight:800;color:var(--green-dark);margin-bottom:.4rem;">Residents</strong><p style="font-size:.875rem;color:var(--muted);">Register, submit waste reports with photos, track status and manage eligible reports.</p></div>
-      <div class="card"><strong style="display:block;font-size:1.1rem;font-weight:800;color:var(--green-dark);margin-bottom:.4rem;">Administrators</strong><p style="font-size:.875rem;color:var(--muted);">Review and approve reports, assign collectors, manage users and track all collections.</p></div>
-      <div class="card"><strong style="display:block;font-size:1.1rem;font-weight:800;color:var(--green-dark);margin-bottom:.4rem;">Collectors</strong><p style="font-size:.875rem;color:var(--muted);">Receive assigned tasks, update collection progress and record completion notes.</p></div>
+    <div class="about-cards">
+      <div class="about-card">
+        <div class="about-card-title">👥 Residents</div>
+        <p class="about-card-desc">Register, submit waste reports with photos, track status and manage eligible reports from your personal dashboard.</p>
+      </div>
+      <div class="about-card">
+        <div class="about-card-title">⚙️ Administrators</div>
+        <p class="about-card-desc">Review and approve reports, assign collectors, manage users and track all collections from a central control panel.</p>
+      </div>
+      <div class="about-card">
+        <div class="about-card-title">🚛 Collectors</div>
+        <p class="about-card-desc">Receive assigned tasks, update collection progress and record completion notes and observations.</p>
+      </div>
     </div>
   </div>
 </section>
 
+<!-- ══════════════════════════════════════════════════════════
+     SERVICES SECTION
+══════════════════════════════════════════════════════════ -->
 <section id="services" class="section">
   <div class="container">
     <div class="section-header">
@@ -76,17 +205,17 @@
     </div>
     <div class="services-grid">
       <article class="service-card">
-        <div class="service-icon"><svg class="icon" aria-hidden="true" focusable="false"><use href="/images/icons.svg#icon-reports"></use></svg></div>
+        <div class="service-icon">📋</div>
         <h3>Waste Reporting</h3>
         <p>Residents submit waste issues with location, category, description and optional photo for fast action and tracking.</p>
       </article>
       <article class="service-card">
-        <div class="service-icon"><svg class="icon" aria-hidden="true" focusable="false"><use href="/images/icons.svg#icon-dashboard"></use></svg></div>
+        <div class="service-icon">⚙️</div>
         <h3>Collection Management</h3>
         <p>Administrators review reports, approve them and assign collection teams with scheduled dates from a central dashboard.</p>
       </article>
       <article class="service-card">
-        <div class="service-icon"><svg class="icon" aria-hidden="true" focusable="false"><use href="/images/icons.svg#icon-truck"></use></svg></div>
+        <div class="service-icon">📍</div>
         <h3>Collection Tracking</h3>
         <p>Collectors and residents track progress from assignment through in-progress to verified completion in real time.</p>
       </article>
@@ -94,7 +223,10 @@
   </div>
 </section>
 
-<section id="how-it-works" class="section" style="background:var(--surface);">
+<!-- ══════════════════════════════════════════════════════════
+     HOW IT WORKS
+══════════════════════════════════════════════════════════ -->
+<section id="how-it-works" class="section" style="background:var(--bg-soft);">
   <div class="container">
     <div class="section-header">
       <div class="section-label">Process</div>
@@ -102,15 +234,59 @@
       <p class="section-subtitle">Four simple steps from registration to resolved waste collection.</p>
     </div>
     <div class="steps-grid">
-      <article class="step-card"><h3>Create an Account</h3><p>Residents register online in minutes. Collector accounts are provisioned by an administrator.</p></article>
-      <article class="step-card"><h3>Report Waste</h3><p>Submit a report with location, category, description and an optional photo from your dashboard.</p></article>
-      <article class="step-card"><h3>Waste Collection</h3><p>Approved reports are assigned to active collectors with a scheduled collection date.</p></article>
-      <article class="step-card"><h3>Track Progress</h3><p>Monitor task status and collection completion in real time from your personal dashboard.</p></article>
+      <article class="step-card">
+        <div class="step-num">1</div>
+        <h3>Create an Account</h3>
+        <p>Residents register online in minutes. Collector accounts are provisioned by an administrator.</p>
+      </article>
+      <article class="step-card">
+        <div class="step-num">2</div>
+        <h3>Report Waste</h3>
+        <p>Submit a report with location, category, description and an optional photo from your dashboard.</p>
+      </article>
+      <article class="step-card">
+        <div class="step-num">3</div>
+        <h3>Waste Collection</h3>
+        <p>Approved reports are assigned to active collectors with a scheduled collection date.</p>
+      </article>
+      <article class="step-card">
+        <div class="step-num">4</div>
+        <h3>Track Progress</h3>
+        <p>Monitor task status and collection completion in real time from your personal dashboard.</p>
+      </article>
     </div>
   </div>
 </section>
 
-<section id="contact" class="section">
+<!-- ══════════════════════════════════════════════════════════
+     FOUNDER SECTION
+══════════════════════════════════════════════════════════ -->
+<section id="founder" class="section" style="background:#fff;">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-label">Leadership</div>
+      <h2 class="section-title">Meet the Founder</h2>
+    </div>
+    <div class="founder-inner">
+      <div class="founder-photo-wrap">
+        <img src="images/founder.jpg" alt="Soleil Zahabu — Founder &amp; CEO" class="founder-photo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+        <div class="founder-photo-placeholder" style="display:none;">👩</div>
+      </div>
+      <div class="founder-info">
+        <span class="founder-label">Founder &amp; CEO</span>
+        <div class="founder-name">Soleil Zahabu</div>
+        <div class="founder-title">Founder &amp; CEO, EcoTrack</div>
+        <p class="founder-bio">Passionate about building cleaner communities across Uganda through smart technology and sustainable waste management solutions. Soleil founded EcoTrack with a vision to transform how communities report, manage and track waste collection — making environmental stewardship accessible to everyone.</p>
+        <div class="founder-mission">"Every piece of waste reported brings us one step closer to a cleaner, healthier Uganda. EcoTrack exists because our communities deserve better." — Soleil Zahabu</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     CONTACT SECTION
+══════════════════════════════════════════════════════════ -->
+<section id="contact" class="section" style="background:var(--bg-soft);">
   <div class="container">
     <div class="section-header">
       <div class="section-label">Get In Touch</div>
@@ -119,21 +295,30 @@
     <div class="contact-grid">
       <div class="contact-card">
         <div class="contact-item">
-          <div class="contact-item-icon"><svg class="icon" aria-hidden="true" focusable="false"><use href="/images/icons.svg#icon-whatsapp"></use></svg></div>
-          <div><strong>WhatsApp Support</strong><span>+256 776 291 622</span></div>
+          <div class="contact-item-icon">📱</div>
+          <div>
+            <strong>WhatsApp Support</strong>
+            <span>+256 776 291 622</span>
+          </div>
         </div>
         <div class="contact-item">
-          <div class="contact-item-icon"><svg class="icon" aria-hidden="true" focusable="false"><use href="/images/icons.svg#icon-home"></use></svg></div>
-          <div><strong>Location</strong><span>Kampala, Uganda</span></div>
+          <div class="contact-item-icon">📍</div>
+          <div>
+            <strong>Location</strong>
+            <span>Kampala, Uganda</span>
+          </div>
         </div>
         <div class="contact-item">
-          <div class="contact-item-icon"><svg class="icon" aria-hidden="true" focusable="false"><use href="/images/icons.svg#icon-check"></use></svg></div>
-          <div><strong>Operating Hours</strong><span>Monday – Friday, 8 AM – 6 PM EAT</span></div>
+          <div class="contact-item-icon">🕐</div>
+          <div>
+            <strong>Operating Hours</strong>
+            <span>Monday – Friday, 8 AM – 6 PM EAT</span>
+          </div>
         </div>
       </div>
       <div class="contact-card" style="display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;gap:1.25rem;">
         <img src="images/logo.svg" alt="EcoTrack" width="72" height="72"/>
-        <p style="font-size:1.1rem;font-weight:700;color:var(--green-dark);">Ready to get started?</p>
+        <p style="font-size:1.1rem;font-weight:700;color:var(--midnight);">Ready to get started?</p>
         <a href="register.html" class="btn btn-primary btn-lg btn-block">Create Free Account</a>
         <a href="login.html" class="btn btn-secondary btn-block">Sign In</a>
       </div>
@@ -142,17 +327,22 @@
 </section>
 
 </main>
+
+<!-- ══════════════════════════════════════════════════════════
+     FOOTER
+══════════════════════════════════════════════════════════ -->
 <footer>
   <div class="container">
     <div class="footer-grid">
       <div>
-        <div class="footer-brand"><img src="images/logo.svg" alt="EcoTrack" width="32" height="32"/> EcoTrack</div>
-        <p class="footer-desc">Waste reporting and collection tracking for cleaner communities across Uganda.</p>
+        <div class="footer-brand"><img src="images/logo.svg" alt="EcoTrack" width="28" height="28"/> EcoTrack</div>
+        <p class="footer-desc">Waste reporting and collection tracking for cleaner communities across Uganda. Building a greener future together.</p>
       </div>
       <div class="footer-col">
         <h4>Company</h4>
         <a href="about.html">About EcoTrack</a>
         <a href="#contact">Contact</a>
+        <a href="#founder">Our Founder</a>
       </div>
       <div class="footer-col">
         <h4>Legal</h4>
@@ -168,11 +358,26 @@
     </div>
     <div class="footer-bottom">
       <span class="footer-copy">&copy; 2026 EcoTrack. All rights reserved.</span>
+      <span class="footer-copy">🌿 Built for cleaner communities</span>
     </div>
   </div>
 </footer>
+
+<script>
+// Mobile nav toggle
+const toggle = document.getElementById('mobileMenuToggle');
+const nav = document.getElementById('mainNav');
+if(toggle && nav){
+  toggle.addEventListener('click', function(){
+    const open = nav.classList.toggle('open');
+    toggle.setAttribute('aria-expanded', open);
+    // show auth buttons in mobile nav too
+    const mobileLogin = nav.querySelector('[aria-hidden="true"]');
+    if(mobileLogin) mobileLogin.style.display = open ? 'block' : 'none';
+  });
+}
+</script>
 <script src="js/main.js"></script>
 <script src="js/home.js"></script>
-<script src="js/globe3d.js"></script>
 </body>
 </html>

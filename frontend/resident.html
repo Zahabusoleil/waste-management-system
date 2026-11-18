@@ -4,19 +4,34 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
 <title>Resident Dashboard | EcoTrack</title>
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"><link rel="stylesheet" href="css/styles.css"/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css"/>
 </head>
 <body>
+
 <div id="sidebarOverlay" class="sidebar-overlay"></div>
+
 <aside class="dash-sidebar" id="dashSidebar">
-  <div class="dash-sidebar-logo"><img src="images/logo.svg" alt="EcoTrack" width="30" height="30"/> EcoTrack</div>
+  <div class="dash-sidebar-logo">
+    <img src="images/logo.svg" alt="EcoTrack" width="30" height="30"/> EcoTrack
+  </div>
   <nav class="dash-nav" aria-label="Resident navigation">
     <div class="dash-nav-section">Main</div>
-    <a href="#" data-section="overview" class="active"><div class="nav-icon"><svg class="icon" aria-hidden="true" focusable="false"><use href="/images/icons.svg#icon-home"></use></svg></div>Overview</a>
-    <a href="#" data-section="submit"><div class="nav-icon"><svg class="icon" aria-hidden="true" focusable="false"><use href="/images/icons.svg#icon-reports"></use></svg></div>Submit Report</a>
-    <a href="#" data-section="my-reports"><div class="nav-icon"><svg class="icon" aria-hidden="true" focusable="false"><use href="/images/icons.svg#icon-chart"></use></svg></div>My Reports</a>
+    <a href="#" data-section="overview" class="active">
+      <div class="nav-icon"><svg class="icon" aria-hidden="true" focusable="false"><use href="/images/icons.svg#icon-home"></use></svg></div>Dashboard
+    </a>
+    <a href="#" data-section="submit">
+      <div class="nav-icon"><svg class="icon" aria-hidden="true" focusable="false"><use href="/images/icons.svg#icon-reports"></use></svg></div>Report Waste
+    </a>
+    <a href="#" data-section="my-reports">
+      <div class="nav-icon"><svg class="icon" aria-hidden="true" focusable="false"><use href="/images/icons.svg#icon-chart"></use></svg></div>My Reports
+    </a>
     <div class="dash-nav-section">Account</div>
-    <a href="#" data-section="profile"><div class="nav-icon"><svg class="icon" aria-hidden="true" focusable="false"><use href="/images/icons.svg#icon-user"></use></svg></div>Profile</a>
+    <a href="#" data-section="profile">
+      <div class="nav-icon"><svg class="icon" aria-hidden="true" focusable="false"><use href="/images/icons.svg#icon-user"></use></svg></div>Profile
+    </a>
   </nav>
   <div class="dash-sidebar-footer">
     <div class="user-chip">
@@ -26,14 +41,18 @@
         <span>Resident Account</span>
       </div>
     </div>
-    <button class="btn-logout-sidebar" data-logout><svg class="icon icon-sm" aria-hidden="true" focusable="false"><use href="/images/icons.svg#icon-logout"></use></svg> Sign Out</button>
+    <button class="btn-logout-sidebar" data-logout>
+      <svg class="icon icon-sm" aria-hidden="true" focusable="false"><use href="/images/icons.svg#icon-logout"></use></svg> Sign Out
+    </button>
   </div>
 </aside>
 
 <div class="dash-main">
   <header class="dash-topbar">
     <div style="display:flex;align-items:center;gap:1rem;">
-      <button class="sidebar-toggle" id="sidebarToggle" aria-label="Toggle navigation"><svg class="icon icon-lg" aria-hidden="true" focusable="false"><use href="/images/icons.svg#icon-menu"></use></svg></button>
+      <button class="sidebar-toggle" id="sidebarToggle" aria-label="Toggle navigation">
+        <svg class="icon icon-lg" aria-hidden="true" focusable="false"><use href="/images/icons.svg#icon-menu"></use></svg>
+      </button>
       <div>
         <div class="dash-page-title" id="topbarTitle">Overview</div>
         <div class="dash-breadcrumb">EcoTrack / Resident</div>
@@ -46,16 +65,46 @@
 
   <div class="dash-content">
 
+    <!-- OVERVIEW SECTION -->
     <section id="sec-overview" class="dash-section">
-      <div class="stats-grid" id="residentStatsGrid">
-        <div class="stat-box"><h4><svg class="icon icon-sm" aria-hidden="true" focusable="false"><use href="/images/icons.svg#icon-reports"></use></svg> Total Reports</h4><h3>0</h3></div>
-        <div class="stat-box"><h4><svg class="icon icon-sm" aria-hidden="true" focusable="false"><use href="/images/icons.svg#icon-chart"></use></svg> Pending</h4><h3>0</h3></div>
-        <div class="stat-box"><h4><svg class="icon icon-sm" aria-hidden="true" focusable="false"><use href="/images/icons.svg#icon-truck"></use></svg> In Progress</h4><h3>0</h3></div>
-        <div class="stat-box"><h4><svg class="icon icon-sm" aria-hidden="true" focusable="false"><use href="/images/icons.svg#icon-check"></use></svg> Completed</h4><h3>0</h3></div>
+      <div class="dash-welcome">
+        <div class="dash-welcome-text">
+          <h2>Welcome back, <span id="residentWelcomeName">Resident</span>! 🌿</h2>
+          <p>Together for a cleaner community. Keep reporting, keep improving.</p>
+        </div>
+        <div style="display:flex;align-items:center;gap:1rem;">
+          <a href="#" class="btn btn-primary" data-section="submit" style="white-space:nowrap;">
+            🗑️ Report Waste
+          </a>
+          <div class="dash-welcome-emoji">🏘️</div>
+        </div>
       </div>
+
+      <div class="stats-grid" id="residentStatsGrid">
+        <div class="stat-box">
+          <h4><svg class="icon icon-sm" aria-hidden="true" focusable="false"><use href="/images/icons.svg#icon-reports"></use></svg> My Reports</h4>
+          <h3>0</h3>
+        </div>
+        <div class="stat-box">
+          <h4><svg class="icon icon-sm" aria-hidden="true" focusable="false"><use href="/images/icons.svg#icon-chart"></use></svg> Pending</h4>
+          <h3>0</h3>
+        </div>
+        <div class="stat-box">
+          <h4><svg class="icon icon-sm" aria-hidden="true" focusable="false"><use href="/images/icons.svg#icon-truck"></use></svg> In Progress</h4>
+          <h3>0</h3>
+        </div>
+        <div class="stat-box">
+          <h4><svg class="icon icon-sm" aria-hidden="true" focusable="false"><use href="/images/icons.svg#icon-check"></use></svg> Completed</h4>
+          <h3>0</h3>
+        </div>
+      </div>
+
       <div class="card">
         <div class="card-header">
-          <h2><div class="card-icon"><svg class="icon" aria-hidden="true" focusable="false"><use href="/images/icons.svg#icon-chart"></use></svg></div>Recent Reports</h2>
+          <h2>
+            <div class="card-icon"><svg class="icon" aria-hidden="true" focusable="false"><use href="/images/icons.svg#icon-chart"></use></svg></div>
+            Recent Reports
+          </h2>
           <a href="#" class="btn btn-primary btn-sm" data-section="submit">+ New Report</a>
         </div>
         <div class="table-wrap">
@@ -67,10 +116,14 @@
       </div>
     </section>
 
+    <!-- SUBMIT REPORT SECTION -->
     <section id="sec-submit" class="dash-section" hidden>
       <div class="card" style="max-width:680px;">
         <div class="card-header">
-          <h2><div class="card-icon"><svg class="icon" aria-hidden="true" focusable="false"><use href="/images/icons.svg#icon-reports"></use></svg></div>Submit Waste Report</h2>
+          <h2>
+            <div class="card-icon"><svg class="icon" aria-hidden="true" focusable="false"><use href="/images/icons.svg#icon-reports"></use></svg></div>
+            Submit Waste Report
+          </h2>
         </div>
         <form id="reportForm" enctype="multipart/form-data">
           <div class="form-grid">
@@ -98,10 +151,14 @@
       </div>
     </section>
 
+    <!-- MY REPORTS SECTION -->
     <section id="sec-my-reports" class="dash-section" hidden>
       <div class="card">
         <div class="card-header">
-          <h2><div class="card-icon"><svg class="icon" aria-hidden="true" focusable="false"><use href="/images/icons.svg#icon-reports"></use></svg></div>My Waste Reports</h2>
+          <h2>
+            <div class="card-icon"><svg class="icon" aria-hidden="true" focusable="false"><use href="/images/icons.svg#icon-reports"></use></svg></div>
+            My Waste Reports
+          </h2>
           <select id="statusFilter" style="margin:0;padding:.4rem .75rem;font-size:.82rem;border-radius:6px;border:1.5px solid var(--border);background:var(--surface);">
             <option value="all">All statuses</option>
             <option>Pending</option><option>Approved</option><option>Assigned</option>
@@ -117,10 +174,14 @@
       </div>
     </section>
 
+    <!-- PROFILE SECTION -->
     <section id="sec-profile" class="dash-section" hidden>
       <div class="card" style="max-width:580px;">
         <div class="card-header">
-          <h2><div class="card-icon"><svg class="icon" aria-hidden="true" focusable="false"><use href="/images/icons.svg#icon-user"></use></svg></div>My Profile</h2>
+          <h2>
+            <div class="card-icon"><svg class="icon" aria-hidden="true" focusable="false"><use href="/images/icons.svg#icon-user"></use></svg></div>
+            My Profile
+          </h2>
         </div>
         <div id="residentProfile"></div>
       </div>
@@ -129,6 +190,7 @@
   </div>
 </div>
 
+<!-- EDIT REPORT DIALOG -->
 <dialog id="editReportDialog" aria-labelledby="editReportTitle">
   <div class="modal-header">
     <h2 id="editReportTitle">Edit Waste Report</h2>
@@ -161,6 +223,17 @@
   </form>
 </dialog>
 
+<script>
+// Sync welcome name with sidebar name
+(function(){
+  const sidebarName = document.getElementById('residentName');
+  const welcomeName = document.getElementById('residentWelcomeName');
+  if(sidebarName && welcomeName){
+    const obs = new MutationObserver(()=>{ welcomeName.textContent = sidebarName.textContent; });
+    obs.observe(sidebarName,{childList:true,characterData:true,subtree:true});
+  }
+})();
+</script>
 <script src="js/main.js"></script>
 <script src="js/resident.js"></script>
 </body>

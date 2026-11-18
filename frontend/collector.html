@@ -4,19 +4,34 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
 <title>Collector Dashboard | EcoTrack</title>
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"><link rel="stylesheet" href="css/styles.css"/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css"/>
 </head>
 <body>
+
 <div id="sidebarOverlay" class="sidebar-overlay"></div>
+
 <aside class="dash-sidebar" id="dashSidebar">
-  <div class="dash-sidebar-logo"><img src="images/logo.svg" alt="EcoTrack" width="30" height="30"/> EcoTrack</div>
+  <div class="dash-sidebar-logo">
+    <img src="images/logo.svg" alt="EcoTrack" width="30" height="30"/> EcoTrack
+  </div>
   <nav class="dash-nav" aria-label="Collector navigation">
     <div class="dash-nav-section">Main</div>
-    <a href="#" data-section="overview" class="active"><div class="nav-icon"><svg class="icon" aria-hidden="true" focusable="false"><use href="/images/icons.svg#icon-dashboard"></use></svg></div>Overview</a>
-    <a href="#" data-section="tasks"><div class="nav-icon"><svg class="icon" aria-hidden="true" focusable="false"><use href="/images/icons.svg#icon-truck"></use></svg></div>Assigned Tasks</a>
-    <a href="#" data-section="history"><div class="nav-icon"><svg class="icon" aria-hidden="true" focusable="false"><use href="/images/icons.svg#icon-check"></use></svg></div>History</a>
+    <a href="#" data-section="overview" class="active">
+      <div class="nav-icon"><svg class="icon" aria-hidden="true" focusable="false"><use href="/images/icons.svg#icon-dashboard"></use></svg></div>Dashboard
+    </a>
+    <a href="#" data-section="tasks">
+      <div class="nav-icon"><svg class="icon" aria-hidden="true" focusable="false"><use href="/images/icons.svg#icon-truck"></use></svg></div>My Tasks
+    </a>
+    <a href="#" data-section="history">
+      <div class="nav-icon"><svg class="icon" aria-hidden="true" focusable="false"><use href="/images/icons.svg#icon-check"></use></svg></div>Collection History
+    </a>
     <div class="dash-nav-section">Account</div>
-    <a href="#" data-section="profile"><div class="nav-icon"><svg class="icon" aria-hidden="true" focusable="false"><use href="/images/icons.svg#icon-user"></use></svg></div>Profile</a>
+    <a href="#" data-section="profile">
+      <div class="nav-icon"><svg class="icon" aria-hidden="true" focusable="false"><use href="/images/icons.svg#icon-user"></use></svg></div>Profile
+    </a>
   </nav>
   <div class="dash-sidebar-footer">
     <div class="user-chip">
@@ -26,14 +41,18 @@
         <span>Collector Account</span>
       </div>
     </div>
-    <button class="btn-logout-sidebar" data-logout><svg class="icon icon-sm" aria-hidden="true" focusable="false"><use href="/images/icons.svg#icon-logout"></use></svg> Sign Out</button>
+    <button class="btn-logout-sidebar" data-logout>
+      <svg class="icon icon-sm" aria-hidden="true" focusable="false"><use href="/images/icons.svg#icon-logout"></use></svg> Sign Out
+    </button>
   </div>
 </aside>
 
 <div class="dash-main">
   <header class="dash-topbar">
     <div style="display:flex;align-items:center;gap:1rem;">
-      <button class="sidebar-toggle" id="sidebarToggle" aria-label="Toggle navigation"><svg class="icon icon-lg" aria-hidden="true" focusable="false"><use href="/images/icons.svg#icon-menu"></use></svg></button>
+      <button class="sidebar-toggle" id="sidebarToggle" aria-label="Toggle navigation">
+        <svg class="icon icon-lg" aria-hidden="true" focusable="false"><use href="/images/icons.svg#icon-menu"></use></svg>
+      </button>
       <div>
         <div class="dash-page-title" id="topbarTitle">Overview</div>
         <div class="dash-breadcrumb">EcoTrack / Collector</div>
@@ -46,17 +65,69 @@
 
   <div class="dash-content">
 
+    <!-- OVERVIEW SECTION -->
     <section id="sec-overview" class="dash-section">
-      <div class="stats-grid" id="collectorStatsGrid">
-        <div class="stat-box"><h4><svg class="icon icon-sm" aria-hidden="true" focusable="false"><use href="/images/icons.svg#icon-truck"></use></svg> Assigned</h4><h3>0</h3></div>
-        <div class="stat-box"><h4><svg class="icon icon-sm" aria-hidden="true" focusable="false"><use href="/images/icons.svg#icon-check"></use></svg> Completed</h4><h3>0</h3></div>
-        <div class="stat-box"><h4><svg class="icon icon-sm" aria-hidden="true" focusable="false"><use href="/images/icons.svg#icon-reports"></use></svg> Blocked</h4><h3>0</h3></div>
-        <div class="stat-box"><h4><svg class="icon icon-sm" aria-hidden="true" focusable="false"><use href="/images/icons.svg#icon-chart"></use></svg> Total Tasks</h4><h3>0</h3></div>
+      <div class="dash-welcome">
+        <div class="dash-welcome-text">
+          <h2>Hello, <span id="collectorWelcomeName">Collector</span>! 👷</h2>
+          <p>Keep up the great work. Your community counts on you.</p>
+        </div>
+        <div class="dash-welcome-emoji">🚛</div>
       </div>
+
+      <div class="stats-grid" id="collectorStatsGrid">
+        <div class="stat-box">
+          <h4><svg class="icon icon-sm" aria-hidden="true" focusable="false"><use href="/images/icons.svg#icon-truck"></use></svg> Assigned</h4>
+          <h3>0</h3>
+        </div>
+        <div class="stat-box">
+          <h4><svg class="icon icon-sm" aria-hidden="true" focusable="false"><use href="/images/icons.svg#icon-check"></use></svg> Completed</h4>
+          <h3>0</h3>
+        </div>
+        <div class="stat-box">
+          <h4><svg class="icon icon-sm" aria-hidden="true" focusable="false"><use href="/images/icons.svg#icon-reports"></use></svg> Blocked</h4>
+          <h3>0</h3>
+        </div>
+        <div class="stat-box">
+          <h4><svg class="icon icon-sm" aria-hidden="true" focusable="false"><use href="/images/icons.svg#icon-chart"></use></svg> Total Tasks</h4>
+          <h3>0</h3>
+        </div>
+      </div>
+
+      <!-- NEXT TASK CARD -->
+      <div class="next-task-card" id="collectorNextTask">
+        <h3>Your Next Collection Task</h3>
+        <div class="next-task-title" id="nextTaskCategory">No upcoming task</div>
+        <div class="next-task-meta">
+          <span id="nextTaskLocation">📍 — </span>
+          <span id="nextTaskDate">📅 — </span>
+        </div>
+        <a href="#" class="btn btn-primary btn-sm" data-section="tasks">View Details →</a>
+      </div>
+
+      <!-- TASK PROGRESS -->
       <div class="card">
         <div class="card-header">
-          <h2><div class="card-icon"><svg class="icon" aria-hidden="true" focusable="false"><use href="/images/icons.svg#icon-truck"></use></svg></div>Active Tasks</h2>
-          <a href="#" class="btn btn-secondary btn-sm" data-section="tasks">View all</a>
+          <h2>
+            <div class="card-icon">📊</div>
+            Task Progress
+          </h2>
+          <span id="collectorProgressPct" style="font-size:.88rem;font-weight:700;color:var(--green-eco);">0%</span>
+        </div>
+        <div class="progress-bar-wrap">
+          <div class="progress-bar-fill" id="collectorProgressBar" style="width:0%"></div>
+        </div>
+        <p style="font-size:.8rem;color:var(--muted);margin-top:.6rem;">Overall completion rate across all assigned tasks</p>
+      </div>
+
+      <!-- ACTIVE TASKS TABLE -->
+      <div class="card">
+        <div class="card-header">
+          <h2>
+            <div class="card-icon"><svg class="icon" aria-hidden="true" focusable="false"><use href="/images/icons.svg#icon-truck"></use></svg></div>
+            Active Tasks
+          </h2>
+          <a href="#" class="btn btn-secondary btn-sm" data-section="tasks">View all →</a>
         </div>
         <div class="table-wrap">
           <table>
@@ -67,10 +138,14 @@
       </div>
     </section>
 
+    <!-- TASKS SECTION -->
     <section id="sec-tasks" class="dash-section" hidden>
       <div class="card">
         <div class="card-header">
-          <h2><div class="card-icon"><svg class="icon" aria-hidden="true" focusable="false"><use href="/images/icons.svg#icon-truck"></use></svg></div>Assigned Collection Tasks</h2>
+          <h2>
+            <div class="card-icon"><svg class="icon" aria-hidden="true" focusable="false"><use href="/images/icons.svg#icon-truck"></use></svg></div>
+            Assigned Collection Tasks
+          </h2>
         </div>
         <div class="table-wrap">
           <table>
@@ -81,10 +156,14 @@
       </div>
     </section>
 
+    <!-- HISTORY SECTION -->
     <section id="sec-history" class="dash-section" hidden>
       <div class="card">
         <div class="card-header">
-          <h2><div class="card-icon"><svg class="icon" aria-hidden="true" focusable="false"><use href="/images/icons.svg#icon-check"></use></svg></div>Completed Collection History</h2>
+          <h2>
+            <div class="card-icon"><svg class="icon" aria-hidden="true" focusable="false"><use href="/images/icons.svg#icon-check"></use></svg></div>
+            Completed Collection History
+          </h2>
         </div>
         <div class="table-wrap">
           <table>
@@ -95,10 +174,14 @@
       </div>
     </section>
 
+    <!-- PROFILE SECTION -->
     <section id="sec-profile" class="dash-section" hidden>
       <div class="card" style="max-width:580px;">
         <div class="card-header">
-          <h2><div class="card-icon"><svg class="icon" aria-hidden="true" focusable="false"><use href="/images/icons.svg#icon-user"></use></svg></div>My Profile</h2>
+          <h2>
+            <div class="card-icon"><svg class="icon" aria-hidden="true" focusable="false"><use href="/images/icons.svg#icon-user"></use></svg></div>
+            My Profile
+          </h2>
         </div>
         <div id="collectorProfile"></div>
       </div>
@@ -107,6 +190,17 @@
   </div>
 </div>
 
+<script>
+// Sync welcome name with sidebar name
+(function(){
+  const sidebarName = document.getElementById('collectorName');
+  const welcomeName = document.getElementById('collectorWelcomeName');
+  if(sidebarName && welcomeName){
+    const obs = new MutationObserver(()=>{ welcomeName.textContent = sidebarName.textContent; });
+    obs.observe(sidebarName,{childList:true,characterData:true,subtree:true});
+  }
+})();
+</script>
 <script src="js/main.js"></script>
 <script src="js/collector.js"></script>
 </body>
