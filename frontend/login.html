@@ -39,6 +39,52 @@
             <h1>Welcome back</h1>
             <p>Sign in to your EcoTrack account to continue</p>
           </div>
+
+          <!-- ── Demo Accounts Dropdown ── -->
+          <div class="demo-accounts-wrap" style="margin-bottom:1rem;position:relative;">
+            <button type="button" id="demoDropdownBtn" style="
+              width:100%;display:flex;align-items:center;justify-content:space-between;
+              padding:.65rem 1rem;border-radius:8px;border:1.5px dashed var(--eco);
+              background:#EDF7F1;color:var(--primary);font-size:.875rem;font-weight:700;
+              cursor:pointer;gap:.5rem;">
+              <span style="display:flex;align-items:center;gap:.5rem;">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+                Try a Demo Account
+              </span>
+              <svg id="demoChevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="transition:transform .2s;flex-shrink:0"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div id="demoDropdownMenu" hidden style="
+              position:absolute;top:calc(100% + 6px);left:0;right:0;
+              background:#fff;border:1.5px solid var(--border);border-radius:10px;
+              box-shadow:0 8px 24px rgba(18,60,50,0.12);z-index:50;overflow:hidden;">
+              <div style="padding:.5rem .75rem;font-size:.7rem;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:.06em;border-bottom:1px solid var(--border);">Select a role to auto-fill</div>
+              <button type="button" class="demo-option" data-email="zahabusoleil01@gmail.com" data-pass="zahabusoleil@123" style="
+                width:100%;display:flex;align-items:center;gap:.85rem;
+                padding:.8rem 1rem;border:none;background:transparent;
+                cursor:pointer;text-align:left;border-bottom:1px solid var(--border);">
+                <span style="width:34px;height:34px;border-radius:8px;background:#E8F5EC;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#123C32" stroke-width="2.5"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                </span>
+                <span>
+                  <strong style="display:block;font-size:.875rem;color:#123C32;">Admin / Lecturer</strong>
+                  <span style="font-size:.78rem;color:var(--text-muted);">Full dashboard access &amp; management</span>
+                </span>
+              </button>
+              <button type="button" class="demo-option" data-email="collector@ecotrack.ug" data-pass="collector@123" style="
+                width:100%;display:flex;align-items:center;gap:.85rem;
+                padding:.8rem 1rem;border:none;background:transparent;
+                cursor:pointer;text-align:left;">
+                <span style="width:34px;height:34px;border-radius:8px;background:#EDF7F1;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#269B68" stroke-width="2.5"><rect x="1" y="3" width="15" height="13" rx="2"/><path d="M16 8h4l3 6v3h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+                </span>
+                <span>
+                  <strong style="display:block;font-size:.875rem;color:#123C32;">Collector</strong>
+                  <span style="font-size:.78rem;color:var(--text-muted);">View &amp; update assigned collections</span>
+                </span>
+              </button>
+            </div>
+          </div>
+
           <div class="panel">
             <div id="loginMessage" class="alert" hidden></div>
             <form id="loginForm" novalidate>
@@ -95,5 +141,44 @@
 </div>
 <script src="js/main.js"></script>
 <script src="js/auth.js"></script>
+<script>
+// Demo accounts dropdown
+(function(){
+  var btn  = document.getElementById('demoDropdownBtn');
+  var menu = document.getElementById('demoDropdownMenu');
+  var chev = document.getElementById('demoChevron');
+  if(!btn||!menu) return;
+
+  function open(){  menu.hidden=false; chev.style.transform='rotate(180deg)'; }
+  function close(){ menu.hidden=true;  chev.style.transform='rotate(0deg)'; }
+  function toggle(){ menu.hidden ? open() : close(); }
+
+  btn.addEventListener('click', function(e){ e.stopPropagation(); toggle(); });
+
+  document.querySelectorAll('.demo-option').forEach(function(opt){
+    opt.addEventListener('click', function(){
+      var email = document.getElementById('loginEmail');
+      var pass  = document.getElementById('loginPassword');
+      if(email) email.value = opt.dataset.email;
+      if(pass)  pass.value  = opt.dataset.pass;
+      close();
+      // highlight the fields briefly
+      [email, pass].forEach(function(el){
+        if(!el) return;
+        el.style.borderColor = '#269B68';
+        el.style.background  = '#EDF7F1';
+        setTimeout(function(){ el.style.borderColor=''; el.style.background=''; }, 1200);
+      });
+    });
+    opt.addEventListener('mouseenter', function(){ this.style.background='#F3F7F4'; });
+    opt.addEventListener('mouseleave', function(){ this.style.background='transparent'; });
+  });
+
+  // close when clicking outside
+  document.addEventListener('click', function(e){
+    if(!menu.hidden && !btn.contains(e.target) && !menu.contains(e.target)) close();
+  });
+})();
+</script>
 </body>
 </html>
