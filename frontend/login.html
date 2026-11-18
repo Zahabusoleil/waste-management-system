@@ -40,48 +40,28 @@
             <p>Sign in to your EcoTrack account to continue</p>
           </div>
 
-          <!-- ── Demo Accounts Dropdown ── -->
-          <div style="margin-bottom:1rem;position:relative;" id="demoWrap">
-            <button type="button" id="demoDropdownBtn" style="
-              width:100%;display:flex;align-items:center;justify-content:space-between;
-              padding:.7rem 1rem;border-radius:8px;border:1.5px dashed #269B68;
-              background:#EDF7F1;color:#123C32;font-size:.875rem;font-weight:700;
-              cursor:pointer;gap:.5rem;font-family:inherit;">
-              <span style="display:flex;align-items:center;gap:.5rem;">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
-                Try a Demo Account
-              </span>
-              <svg id="demoChevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="transition:transform .2s;flex-shrink:0;"><polyline points="6 9 12 15 18 9"/></svg>
-            </button>
-            <div id="demoDropdownMenu" style="
-              display:none;position:absolute;top:calc(100% + 6px);left:0;right:0;
-              background:#fff;border:1.5px solid #E2E8E4;border-radius:10px;
-              box-shadow:0 8px 24px rgba(18,60,50,0.15);z-index:9999;overflow:hidden;">
-              <div style="padding:.5rem .75rem;font-size:.7rem;font-weight:700;color:#64748B;text-transform:uppercase;letter-spacing:.06em;border-bottom:1px solid #E2E8E4;background:#F3F7F4;">Select a role to auto-fill</div>
-              <button type="button" class="demo-option" data-email="zahabusoleil01@gmail.com" data-pass="zahabusoleil@123" style="
-                width:100%;display:flex;align-items:center;gap:.85rem;
-                padding:.85rem 1rem;border:none;background:transparent;
-                cursor:pointer;text-align:left;border-bottom:1px solid #E2E8E4;font-family:inherit;">
-                <span style="width:34px;height:34px;border-radius:8px;background:#E8F5EC;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#123C32" stroke-width="2.5"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                </span>
-                <span style="text-align:left;">
-                  <strong style="display:block;font-size:.875rem;color:#123C32;font-weight:700;">Admin / Lecturer</strong>
-                  <span style="font-size:.78rem;color:#64748B;">Full dashboard access &amp; management</span>
-                </span>
-              </button>
-              <button type="button" class="demo-option" data-email="collector@ecotrack.ug" data-pass="collector@123" style="
-                width:100%;display:flex;align-items:center;gap:.85rem;
-                padding:.85rem 1rem;border:none;background:transparent;
-                cursor:pointer;text-align:left;font-family:inherit;">
-                <span style="width:34px;height:34px;border-radius:8px;background:#EDF7F1;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#269B68" stroke-width="2.5"><rect x="1" y="3" width="15" height="13" rx="2"/><path d="M16 8h4l3 6v3h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
-                </span>
-                <span style="text-align:left;">
-                  <strong style="display:block;font-size:.875rem;color:#123C32;font-weight:700;">Collector</strong>
-                  <span style="font-size:.78rem;color:#64748B;">View &amp; update assigned collections</span>
-                </span>
-              </button>
+          <!-- ── Demo Account Dropdown Menu ── -->
+          <div style="margin-bottom:1.25rem;">
+            <label for="demoAccountSelect" style="display:flex;align-items:center;gap:.4rem;font-size:.82rem;font-weight:700;color:#123C32;margin-bottom:.45rem;">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#269B68" stroke-width="2.5"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+              Quick Demo Account Dropdown
+            </label>
+            <div style="position:relative;">
+              <select id="demoAccountSelect" style="
+                width:100%;padding:.75rem 2.25rem .75rem 1rem;
+                border:1.5px solid #269B68;border-radius:8px;
+                background:#EDF7F1;font-family:inherit;
+                font-size:.88rem;font-weight:600;color:#123C32;
+                cursor:pointer;outline:none;
+                box-shadow:0 1px 4px rgba(38,155,104,0.12);
+                -webkit-appearance:none;appearance:none;">
+                <option value="" selected disabled>Select Demo Role (Lecturer or Collector)...</option>
+                <option value="admin">👤 Lecturer / Admin (zahabusoleil01@gmail.com)</option>
+                <option value="collector">🚛 Waste Collector (collector@ecotrack.ug)</option>
+              </select>
+              <div style="position:absolute;right:1rem;top:50%;transform:translateY(-50%);pointer-events:none;color:#123C32;">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+              </div>
             </div>
           </div>
 
@@ -142,56 +122,49 @@
 <script src="js/main.js"></script>
 <script src="js/auth.js"></script>
 <script>
-// Demo accounts dropdown — runs after DOM ready
+// Demo accounts dropdown selector
 (function(){
-  var btn  = document.getElementById('demoDropdownBtn');
-  var menu = document.getElementById('demoDropdownMenu');
-  var chev = document.getElementById('demoChevron');
-  if(!btn || !menu) return;
+  var sel = document.getElementById('demoAccountSelect');
+  if(!sel) return;
 
-  var open = false;
-
-  function showMenu(){
-    open = true;
-    menu.style.display = 'block';
-    if(chev) chev.style.transform = 'rotate(180deg)';
-  }
-  function hideMenu(){
-    open = false;
-    menu.style.display = 'none';
-    if(chev) chev.style.transform = 'rotate(0deg)';
-  }
-
-  btn.addEventListener('click', function(e){
-    e.preventDefault();
-    e.stopPropagation();
-    open ? hideMenu() : showMenu();
-  });
-
-  document.querySelectorAll('.demo-option').forEach(function(opt){
-    opt.addEventListener('click', function(e){
-      e.stopPropagation();
-      var emailEl = document.getElementById('loginEmail');
-      var passEl  = document.getElementById('loginPassword');
-      if(emailEl){ emailEl.value = opt.getAttribute('data-email'); }
-      if(passEl) { passEl.value  = opt.getAttribute('data-pass');  }
-      hideMenu();
-      // green flash on fields
-      [emailEl, passEl].forEach(function(el){
-        if(!el) return;
-        el.style.borderColor = '#269B68';
-        el.style.background  = '#EDF7F1';
-        setTimeout(function(){ el.style.borderColor=''; el.style.background=''; }, 1400);
-      });
-    });
-    opt.addEventListener('mouseenter', function(){ opt.style.background='#F3F7F4'; });
-    opt.addEventListener('mouseleave', function(){ opt.style.background='transparent'; });
-  });
-
-  document.addEventListener('click', function(e){
-    if(open && !btn.contains(e.target) && !menu.contains(e.target)){
-      hideMenu();
+  var creds = {
+    admin: {
+      email: 'zahabusoleil01@gmail.com',
+      pass: 'zahabusoleil@123'
+    },
+    collector: {
+      email: 'collector@ecotrack.ug',
+      pass: 'collector@123'
     }
+  };
+
+  sel.addEventListener('change', function(){
+    var val = sel.value;
+    if(!creds[val]) return;
+
+    var emailEl = document.getElementById('loginEmail');
+    var passEl = document.getElementById('loginPassword');
+
+    if(emailEl){
+      emailEl.value = creds[val].email;
+      emailEl.dispatchEvent(new Event('input', { bubbles: true }));
+      emailEl.dispatchEvent(new Event('change', { bubbles: true }));
+    }
+    if(passEl){
+      passEl.value = creds[val].pass;
+      passEl.dispatchEvent(new Event('input', { bubbles: true }));
+      passEl.dispatchEvent(new Event('change', { bubbles: true }));
+    }
+
+    [emailEl, passEl].forEach(function(el){
+      if(!el) return;
+      el.style.borderColor = '#269B68';
+      el.style.background = '#EDF7F1';
+      setTimeout(function(){
+        el.style.borderColor = '';
+        el.style.background = '';
+      }, 1500);
+    });
   });
 })();
 </script>
