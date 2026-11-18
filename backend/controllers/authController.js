@@ -21,9 +21,10 @@ const createToken = (user) =>
 const setAuthCookie = (res, token) => {
   res.cookie(process.env.SESSION_NAME || "ecotrack_token", token, {
     httpOnly: true,
-    sameSite: "strict",
+    sameSite: "lax",
     secure: process.env.NODE_ENV === "production",
     maxAge: 7 * 24 * 60 * 60 * 1000,
+    path: "/",
   });
 };
 
@@ -103,7 +104,7 @@ const login = async (req, res, next) => {
 };
 
 const logout = (req, res) => {
-  res.clearCookie(process.env.SESSION_NAME || "ecotrack_token");
+  res.clearCookie(process.env.SESSION_NAME || "ecotrack_token", { path: "/" });
   res.status(200).json({ message: "Logged out successfully." });
 };
 

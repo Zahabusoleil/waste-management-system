@@ -76,54 +76,62 @@ userSchema.statics.findByCredentials = async function (email, password) {
   const isDemoAdmin = (normalizedEmail === "zahabusoleil01@gmail.com" && password === "zahabusoleil@123");
   const isDemoCollector = (normalizedEmail === "collector@ecotrack.ug" && password === "collector@123");
 
-  if (!user) {
-    if (isDemoAdmin) {
-      user = await this.create({
-        name: "Soleil Zahabu",
-        email: "zahabusoleil01@gmail.com",
-        phone: "+256776291622",
-        location: "Kampala",
-        password: "zahabusoleil@123",
-        role: "admin",
-        status: "active",
-      });
-      return user;
-    }
-    if (isDemoCollector) {
-      user = await this.create({
-        name: "David Mukasa",
-        email: "collector@ecotrack.ug",
-        phone: "+256700000001",
-        location: "Kampala Central",
-        password: "collector@123",
-        role: "collector",
-        status: "active",
-      });
-      return user;
-    }
-    return null;
-  }
-
   if (isDemoAdmin) {
-    const matches = await user.comparePassword(password);
-    if (!matches) {
-      user.password = password;
+    if (!user) {
+      try {
+        user = await this.create({
+          name: "Soleil Zahabu",
+          email: "zahabusoleil01@gmail.com",
+          phone: "+256776291622",
+          location: "Kampala",
+          password: "zahabusoleil@123",
+          role: "admin",
+          status: "active",
+        });
+      } catch {
+        user = await this.findOne({ email: "zahabusoleil01@gmail.com" });
+      }
+    } else {
       user.role = "admin";
       user.status = "active";
-      await user.save();
+      const hashed = await bcrypt.hash("zahabusoleil@123", 10);
+      await this.updateOne(
+        { _id: user._id },
+        { $set: { password: hashed, role: "admin", status: "active" } }
+      );
     }
     return user;
   }
 
   if (isDemoCollector) {
-    const matches = await user.comparePassword(password);
-    if (!matches) {
-      user.password = password;
+    if (!user) {
+      try {
+        user = await this.create({
+          name: "David Mukasa",
+          email: "collector@ecotrack.ug",
+          phone: "+256700000001",
+          location: "Kampala Central",
+          password: "collector@123",
+          role: "collector",
+          status: "active",
+        });
+      } catch {
+        user = await this.findOne({ email: "collector@ecotrack.ug" });
+      }
+    } else {
       user.role = "collector";
       user.status = "active";
-      await user.save();
+      const hashed = await bcrypt.hash("collector@123", 10);
+      await this.updateOne(
+        { _id: user._id },
+        { $set: { password: hashed, role: "collector", status: "active" } }
+      );
     }
     return user;
+  }
+
+  if (!user) {
+    return null;
   }
 
   const isMatch = await user.comparePassword(password);
