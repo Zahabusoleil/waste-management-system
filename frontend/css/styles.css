@@ -124,13 +124,14 @@ ul,ol{list-style:none;}
 .site-hero{
   background:#fff;overflow:hidden;
   position:relative;
+  padding:1rem 0 2.5rem;
 }
 .hero-content{
-  display:grid;grid-template-columns:1.05fr 0.95fr;
+  display:grid;grid-template-columns:1.1fr 0.9fr;
   align-items:center;
   max-width:1200px;margin:0 auto;
-  padding:2.5rem 1.5rem;
-  gap:1.5rem;min-height:500px;
+  padding:1.5rem 1.5rem 2rem;
+  gap:2.5rem;
 }
 .hero-left{
   display:flex;flex-direction:column;justify-content:center;
@@ -141,7 +142,7 @@ ul,ol{list-style:none;}
   position:relative;width:100%;
 }
 .hero-truck-img{
-  width:100%;height:auto;max-height:480px;
+  width:100%;height:auto;max-height:380px;
   object-fit:contain;object-position:right center;display:block;
 }
 .hero-eyebrow{
@@ -161,7 +162,7 @@ ul,ol{list-style:none;}
   font-size:1rem;color:var(--muted);max-width:500px;
   line-height:1.65;margin-bottom:2rem;
 }
-.hero-cta{display:flex;gap:1rem;align-items:center;flex-wrap:wrap;margin-bottom:2rem;}
+.hero-cta{display:flex;gap:1rem;align-items:center;flex-wrap:wrap;}
 .btn-hero-report{
   background:var(--green);color:#fff;
   padding:.85rem 1.85rem;border-radius:9999px;
@@ -194,30 +195,30 @@ ul,ol{list-style:none;}
 }
 
 .hero-stats{
-  display:grid;grid-template-columns:repeat(4,1fr);gap:.65rem;
-  padding-top:1.5rem;border-top:1px solid var(--border);
-  margin-top:auto;
+  display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;
+  padding-top:1.75rem;border-top:1px solid var(--border);
+  max-width:1200px;margin:0 auto;
 }
 .hero-stat-card{
   background:#ffffff;
   border:1px solid var(--border);
-  border-radius:var(--radius);padding:.7rem .8rem;
+  border-radius:var(--radius);padding:.9rem 1.1rem;
   box-shadow:var(--shadow);
-  display:flex;align-items:center;gap:.6rem;
+  display:flex;align-items:center;gap:.85rem;
 }
 .stat-icon-wrap{
-  width:32px;height:32px;border-radius:50%;
+  width:36px;height:36px;border-radius:50%;
   background:var(--green-light);color:var(--green);
   display:flex;align-items:center;justify-content:center;
-  font-size:.95rem;font-weight:700;flex-shrink:0;
+  font-size:1rem;font-weight:700;flex-shrink:0;
 }
 .stat-body strong{
-  display:block;font-size:1.15rem;font-weight:800;color:var(--green-dark);
+  display:block;font-size:1.2rem;font-weight:800;color:var(--green-dark);
   line-height:1.1;
 }
 .stat-body span{
-  font-size:.72rem;color:var(--muted);font-weight:500;white-space:nowrap;
-  display:block;margin-top:.15rem;
+  font-size:.75rem;color:var(--muted);font-weight:500;white-space:nowrap;
+  display:block;margin-top:.2rem;
 }
 
 /* ============================================================
@@ -729,8 +730,11 @@ dialog::backdrop{background:rgba(7,59,42,0.4);}
   .nav-links .btn-register-nav{display:block;text-align:center;margin-top:.5rem;}
   #mobileMenuToggle{display:flex;}
   /* Hero */
-  .hero-container{min-height:auto;padding:2.5rem 1rem;}
-  .hero-bg-art{opacity:0.25;width:100%;}
+  .hero-content{grid-template-columns:1fr;gap:2rem;text-align:center;padding:1.5rem 1rem;}
+  .hero-eyebrow{align-self:center;}
+  .hero-subtitle{margin:0 auto 2rem;}
+  .hero-right{justify-content:center;}
+  .hero-truck-img{max-height:260px;object-position:center;}
   .hero-left{text-align:center;max-width:100%;}
   .hero-title{font-size:1.75rem;}
   .hero-cta{justify-content:center;}
@@ -758,6 +762,7 @@ dialog::backdrop{background:rgba(7,59,42,0.4);}
   .dialog-actions{flex-direction:column;}
 }
 @media(max-width:480px){
+  .hero-stats{grid-template-columns:1fr;}
   .stats-row-grid{grid-template-columns:1fr;}
   .stats-grid{grid-template-columns:1fr;}
   .hero-title{font-size:1.5rem;}
